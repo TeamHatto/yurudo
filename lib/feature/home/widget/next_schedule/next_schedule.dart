@@ -138,8 +138,10 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
                           child: SelectDayWidget(
                             label: context.l10n.selectCompleteDay,
                             selectDate: state.completeDay,
-                            firstDate: DateTime.now()
-                                .subtract(const Duration(days: 366)),
+                            firstDate:
+                                widget.args.todo.completeDate.lastOrNull?.add(const Duration(days: 1)) ??
+                                    DateTime.now()
+                                        .subtract(const Duration(days: 366)),
                             lastDate: DateTime.now(),
                             onSelectDate: (value) {
                               ref.read(provider.notifier).setCompleteDay(
