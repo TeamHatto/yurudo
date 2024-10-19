@@ -79,9 +79,7 @@ class SignInScreen extends ConsumerWidget {
                                   ),
                           );
                     },
-                    onNegativeButton: () {
-                      Navigator.pop(context);
-                    },
+                    onNegativeButton: () {},
                   ),
                 );
               },
@@ -116,9 +114,7 @@ class SignInScreen extends ConsumerWidget {
                                   ),
                           );
                     },
-                    onNegativeButton: () {
-                      Navigator.pop(context);
-                    },
+                    onNegativeButton: () {},
                   ),
                 );
               },
