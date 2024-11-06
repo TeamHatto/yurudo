@@ -154,10 +154,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
   /// 実施が遅れているゆるDOを取得
   List<Todo> getPastTodos(DateTime date) {
     List<Todo> list = state
-        .where((todo) =>
-            todo.expectedDate.isBeforeDay(date) ||
-            todo.preExpectedDate.isBeforeDay(date) &&
-                todo.completeDate.any((d) => d.isSameDay(date)))
+        .where((todo) => todo.isPastTodo(date))
         .toList();
     list.sort(Todo.compareByExpectedDate);
     return list.reversed.toList();

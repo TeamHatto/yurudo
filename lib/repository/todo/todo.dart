@@ -127,7 +127,7 @@ class Todo {
       categoryId: categoryId != null ? categoryId() : this.categoryId,
       completeDate: completeDate ?? this.completeDate,
       preExpectedDate:
-      preExpectedDate != null ? preExpectedDate() : this.preExpectedDate,
+          preExpectedDate != null ? preExpectedDate() : this.preExpectedDate,
       expectedDate: expectedDate != null ? expectedDate() : this.expectedDate,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
@@ -222,5 +222,11 @@ class Todo {
 
   bool isContainComplete(DateTime date) {
     return completeDate.any((e) => e.isSameDay(date));
+  }
+
+  bool isPastTodo(DateTime date) {
+    return expectedDate.isBeforeDay(date) ||
+        preExpectedDate.isBeforeDay(date) &&
+            completeDate.any((d) => d.isSameDay(date));
   }
 }
