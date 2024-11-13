@@ -37,6 +37,9 @@ class Todo {
   /// 実施予定日
   final DateTime? expectedDate;
 
+  /// 削除済みフラグ
+  final bool isDeleted;
+
   /// 作成日時
   final DateTime? createdAt;
 
@@ -45,7 +48,7 @@ class Todo {
 
   @override
   String toString() {
-    return 'Todo{id: $id, name: $name, span: $span, remind: $remind, time: $time, count: $count, skipCount: $skipCount, skipConsecutive: $skipConsecutive, categoryId: $categoryId, completeDate: $completeDate, preExpectedDate: $preExpectedDate, expectedDate: $expectedDate, createdAt: $createdAt, updatedAt: $updatedAt}';
+    return 'Todo{id: $id, name: $name, span: $span, remind: $remind, time: $time, count: $count, skipCount: $skipCount, skipConsecutive: $skipConsecutive, categoryId: $categoryId, completeDate: $completeDate, preExpectedDate: $preExpectedDate, expectedDate: $expectedDate, isDeleted: $isDeleted createdAt: $createdAt, updatedAt: $updatedAt}';
   }
 
   const Todo({
@@ -61,6 +64,7 @@ class Todo {
     this.completeDate = const [],
     this.preExpectedDate,
     this.expectedDate,
+    this.isDeleted = false,
     this.createdAt,
     this.updatedAt,
   });
@@ -78,6 +82,7 @@ class Todo {
     List<DateTime>? completeDate,
     DateTime? preExpectedDate,
     DateTime? expectedDate,
+    bool? isDeleted,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -94,6 +99,7 @@ class Todo {
       completeDate: completeDate ?? this.completeDate,
       preExpectedDate: preExpectedDate ?? this.preExpectedDate,
       expectedDate: expectedDate ?? this.expectedDate,
+      isDeleted: isDeleted ?? this.isDeleted,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -112,6 +118,7 @@ class Todo {
     List<DateTime>? completeDate,
     DateTime? Function()? preExpectedDate,
     DateTime? Function()? expectedDate,
+    bool? isDeleted,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -129,6 +136,7 @@ class Todo {
       preExpectedDate:
           preExpectedDate != null ? preExpectedDate() : this.preExpectedDate,
       expectedDate: expectedDate != null ? expectedDate() : this.expectedDate,
+      isDeleted: isDeleted ?? this.isDeleted,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -147,6 +155,7 @@ class Todo {
       'completeDate': completeDate.map((e) => e.toIso8601String()).join(","),
       'preExpectedDate': preExpectedDate?.toIso8601String(),
       'expectedDate': expectedDate?.toIso8601String(),
+      'isDeleted': isDeleted ? 1 : 0,
       'createdAt': createdAt?.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
     };
@@ -177,6 +186,7 @@ class Todo {
       completeDate: completeDate,
       preExpectedDate: DateTime.tryParse(map['preExpectedDate'] ?? ''),
       expectedDate: DateTime.tryParse(map['expectedDate'] ?? ''),
+      isDeleted: map['isDeleted'] == 1 ? true : false,
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );

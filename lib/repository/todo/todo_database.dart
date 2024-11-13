@@ -9,6 +9,12 @@ import 'package:sqflite/sqflite.dart';
 class TodoDatabase {
   static const tableName = 'yurudo';
 
+  final int _version = 2;
+
+  final _scripts = {
+    '2': ['ALTER TABLE $tableName ADD COLUMN isDeleted INTEGER DEFAULT 0;'],
+  };
+
   static Future<String> get databasePath async {
     Directory dbDir = await getApplicationSupportDirectory();
     return join(dbDir.path, '${tableName}_database.db');
@@ -21,10 +27,9 @@ class TodoDatabase {
   }
 
   Future<Database> get database async {
-    final Future<Database> database = openDatabase(
-      await databasePath,
-      onCreate: (db, version) {
-        return db.execute('''
+    final Future<Database> database = openDatabase(await databasePath,
+        onCreate: (db, version) {
+          return db.execute('''
           CREATE TABLE $tableName (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT,
@@ -41,9 +46,16 @@ class TodoDatabase {
           createdAt TEXT,
           updatedAt TEXT)
         ''');
-      },
-      version: 1,
-    );
+        },
+        version: _version,
+        onUpgrade: (db, oldVersion, newVersion) async {
+          for (var i = oldVersion + 1; i <= newVersion; i++) {
+            var queries = _scripts[i.toString()];
+            for (String query in queries!) {
+              await db.execute(query);
+            }
+          }
+        });
     return database;
   }
 
@@ -74,7 +86,11 @@ class TodoDatabase {
 
   Future<List<Todo>> getAll() async {
     final Database db = await database;
-    final List<Map<String, dynamic>> maps = await db.query(tableName);
+    final List<Map<String, dynamic>> maps = await db.query(
+      tableName,
+      where: 'isDeleted != ?',
+      whereArgs: [1],
+    );
     return List.generate(maps.length, (i) {
       return Todo.fromMap(maps[i]);
     });

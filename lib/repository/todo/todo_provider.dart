@@ -85,13 +85,15 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
 
   Future<void> delete(Todo todo) async {
     final newTodo = todo.copyWith(
-        preExpectedDate: () => null,
-        expectedDate: () => null,
-        updatedAt: DateTime.now());
+      preExpectedDate: () => null,
+      expectedDate: () => null,
+      isDeleted: true,
+      updatedAt: DateTime.now(),
+    );
     _database.update(newTodo);
     state = [
       for (var s in state)
-        if (s.id == todo.id) newTodo else s
+        if (s.id != todo.id) s
     ];
   }
 
@@ -153,9 +155,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
 
   /// 実施が遅れているゆるDOを取得
   List<Todo> getPastTodos(DateTime date) {
-    List<Todo> list = state
-        .where((todo) => todo.isPastTodo(date))
-        .toList();
+    List<Todo> list = state.where((todo) => todo.isPastTodo(date)).toList();
     list.sort(Todo.compareByExpectedDate);
     return list.reversed.toList();
   }
@@ -170,7 +170,8 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
                 todo.expectedDate.isSameDay(today)) && // 実施予定日が今日以降
             (todo.expectedDate.isSameDay(date) ||
                 todo.expectedDate.isBeforeDay(date) &&
-                    todo.expectedDate!.dateDiff(date) % todo.span == 0)) // 当日か、スパン日後
+                    todo.expectedDate!.dateDiff(date) % todo.span ==
+                        0)) // 当日か、スパン日後
         .toList();
     list.sort(Todo.compareByTime);
     return list;
