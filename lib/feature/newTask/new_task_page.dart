@@ -33,8 +33,9 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
   final TextEditingController _dateController = TextEditingController();
   final provider = newTaskPageStateProvider;
   late final AdService ad;
+  bool _isInitialized = false;
   late final List<String> titleList;
-  late final titleNum = Random().nextInt(titleList.length);
+  late final int titleNum;
 
   @override
   void initState() {
@@ -46,30 +47,6 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
         (route) => route.settings.name == AppRouter.home,
       );
     });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    titleList = [
-      context.l10n.titleExample1,
-      context.l10n.titleExample2,
-      context.l10n.titleExample3,
-      context.l10n.titleExample4,
-      context.l10n.titleExample5,
-      context.l10n.titleExample6,
-      context.l10n.titleExample7,
-      context.l10n.titleExample8,
-      context.l10n.titleExample9,
-      context.l10n.titleExample10,
-      context.l10n.titleExample11,
-      context.l10n.titleExample12,
-      context.l10n.titleExample13,
-      context.l10n.titleExample14,
-      context.l10n.titleExample15,
-      context.l10n.titleExample16,
-    ];
   }
 
   @override
@@ -86,6 +63,29 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
   Widget build(BuildContext context) {
     final NewTaskPageState state = ref.watch(provider);
     final deviceWidth = MediaQuery.of(context).size.width;
+
+    if (!_isInitialized) {
+      titleList = [
+        context.l10n.titleExample1,
+        context.l10n.titleExample2,
+        context.l10n.titleExample3,
+        context.l10n.titleExample4,
+        context.l10n.titleExample5,
+        context.l10n.titleExample6,
+        context.l10n.titleExample7,
+        context.l10n.titleExample8,
+        context.l10n.titleExample9,
+        context.l10n.titleExample10,
+        context.l10n.titleExample11,
+        context.l10n.titleExample12,
+        context.l10n.titleExample13,
+        context.l10n.titleExample14,
+        context.l10n.titleExample15,
+        context.l10n.titleExample16,
+      ];
+      titleNum = Random().nextInt(titleList.length);
+      _isInitialized = true;
+    }
 
     return Scaffold(
       appBar: AppBar(
