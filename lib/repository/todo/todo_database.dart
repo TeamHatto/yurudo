@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:routine_app/repository/todo/todo.dart';
@@ -9,11 +10,33 @@ import 'package:sqflite/sqflite.dart';
 class TodoDatabase {
   static const tableName = 'yurudo';
 
-  final int _version = 2;
+  final int _version = 3;
 
   final _scripts = {
-    '2': ['ALTER TABLE $tableName ADD COLUMN isDeleted INTEGER DEFAULT 0;'],
+    // '3': ['ALTER TABLE $tableName ADD COLUMN isDeleted INTEGER DEFAULT 0;'],
   };
+
+  void _createTableV2(Batch batch) {
+    batch.execute('DROP TABLE IF EXISTS $tableName');
+    batch.execute('''
+    CREATE TABLE $tableName (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT,
+          span INTEGER,
+          remind INTEGER,
+          time INTEGER,
+          count INTEGER,
+          skipCount INTEGER,
+          skipConsecutive INTEGER,
+          categoryId INTEGER,
+          completeDate TEXT,
+          preExpectedDate TEXT,
+          expectedDate TEXT,
+          isDeleted INTEGER,
+          createdAt TEXT,
+          updatedAt TEXT)
+''');
+  }
 
   static Future<String> get databasePath async {
     Directory dbDir = await getApplicationSupportDirectory();
@@ -28,32 +51,35 @@ class TodoDatabase {
 
   Future<Database> get database async {
     final Future<Database> database = openDatabase(await databasePath,
-        onCreate: (db, version) {
-          return db.execute('''
-          CREATE TABLE $tableName (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          name TEXT,
-          span INTEGER,
-          remind INTEGER,
-          time INTEGER,
-          count INTEGER,
-          skipCount INTEGER,
-          skipConsecutive INTEGER,
-          categoryId INTEGER,
-          completeDate TEXT,
-          preExpectedDate TEXT,
-          expectedDate TEXT,
-          createdAt TEXT,
-          updatedAt TEXT)
-        ''');
+        onCreate: (db, version) async {
+          var batch = db.batch();
+          _createTableV2(batch);
+          await batch.commit();
         },
         version: _version,
         onUpgrade: (db, oldVersion, newVersion) async {
+          var batch = db.batch();
           for (var i = oldVersion + 1; i <= newVersion; i++) {
-            var queries = _scripts[i.toString()];
-            for (String query in queries!) {
-              await db.execute(query);
+            switch (newVersion) {
+              case 3:
+                batch.execute(
+                  'ALTER TABLE $tableName ADD COLUMN isDeleted INTEGER DEFAULT 0;',
+                );
+                break;
+              default:
+                var queries = _scripts[i.toString()];
+                if (queries != null) {
+                  for (String query in queries) {
+                    batch.execute(query);
+                  }
+                }
+                break;
             }
+          }
+          try {
+            await batch.commit();
+          } catch(ex) {
+            Logger().e(ex);
           }
         });
     return database;
