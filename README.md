@@ -1,7 +1,6 @@
 # routine_app
 
-Android deploygate
-
+DeployGate Upload
 ```shell
 ./dev-build.sh both 1
 ```
@@ -11,11 +10,7 @@ Android Releaseビルド
 fvm flutter build appbundle --flavor prod
 ```
 
-iOS Developmentビルド
-
-``` shell
-fvm flutter build ipa --flavor dev
-```
+iOS Releaseビルド
 ``` shell
 fvm flutter build ipa --flavor prod --export-options-plist="ios/config/prod/ExportOptions.plist"
 ```
