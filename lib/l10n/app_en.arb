@@ -166,7 +166,8 @@
     "description": "スパンのN日に1回の表示",
     "placeholders": {
       "date": {
-        "description": "N日の部分"
+        "description": "N日の部分",
+        "type": "num"
       }
     }
   },
@@ -175,7 +176,8 @@
     "description": "スパンのN週に1回の表示",
     "placeholders": {
       "date": {
-        "description": "N週の部分"
+        "description": "N週の部分",
+        "type": "num"
       }
     }
   },
@@ -184,7 +186,8 @@
     "description": "スパンのヶ月に1回の表示",
     "placeholders": {
       "date": {
-        "description": "Nヶ月の部分"
+        "description": "Nヶ月の部分",
+        "type": "num"
       }
     }
   },

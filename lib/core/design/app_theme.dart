@@ -18,10 +18,9 @@ class AppTheme {
       secondary: AppColor.primary,
       surface: AppColor.backgroundColor,
     ),
-    dialogBackgroundColor: AppColor.backgroundColor,
     snackBarTheme: const SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
     ),
-    textTheme: const TextTheme(),
+    textTheme: const TextTheme(), dialogTheme: const DialogThemeData(backgroundColor: AppColor.backgroundColor),
   );
 }

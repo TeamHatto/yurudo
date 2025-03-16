@@ -33,6 +33,7 @@ dev-build.sh
 .pub/
 /build/
 .fvm/flutter_sdk
+lib/l10n/app_localizations*
 
 # Symbolication related
 app.*.symbols

@@ -149,6 +149,13 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SegmentedButton(
+                    segments: const [
+                      ButtonSegment(value: 0, label: Text("繰り返し")),
+                      ButtonSegment(value: 1, label: Text("単発")),
+                    ],
+                    selected: const {0}
+                ),
                 if (state.hasError)
                   Container(
                     width: double.infinity,
