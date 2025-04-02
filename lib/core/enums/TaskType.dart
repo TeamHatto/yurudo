@@ -1,0 +1,2 @@
+
+enum TaskType { recurring, single }

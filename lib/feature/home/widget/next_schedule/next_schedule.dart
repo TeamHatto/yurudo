@@ -6,8 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:routine_app/core/design/app_assets.dart';
 import 'package:routine_app/core/design/app_color.dart';
 import 'package:routine_app/core/design/app_style.dart';
+import 'package:routine_app/core/enums/TaskType.dart';
 import 'package:routine_app/core/utils/contextEx.dart';
-import 'package:routine_app/core/utils/date.dart';
 import 'package:routine_app/feature/home/widget/select_day_widget.dart';
 
 import '../../../../repository/todo/todo_provider.dart';
@@ -17,10 +17,7 @@ import 'next_schedule_state.dart';
 class NextSchedule extends ConsumerStatefulWidget {
   final NextScheduleArgs args;
 
-  const NextSchedule({
-    required this.args,
-    super.key,
-  });
+  const NextSchedule({required this.args, super.key});
 
   @override
   ConsumerState createState() => _NextScheduleState();
@@ -28,8 +25,11 @@ class NextSchedule extends ConsumerStatefulWidget {
 
 class _NextScheduleState extends ConsumerState<NextSchedule> {
   static const double _width = 185;
-  late final AutoDisposeStateNotifierProvider<NextScheduleStateNotifier,
-      NextScheduleState> provider;
+  late final AutoDisposeStateNotifierProvider<
+    NextScheduleStateNotifier,
+    NextScheduleState
+  >
+  provider;
 
   @override
   void initState() {
@@ -56,20 +56,12 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
                   children: [
                     const Positioned(
                       bottom: 10,
-                      child: CustomPaint(
-                        painter: HalfCircle(width: _width),
-                      ),
+                      child: CustomPaint(painter: HalfCircle(width: _width)),
                     ),
-                    SvgPicture.asset(
-                      AppAssets.uncheck,
-                      width: 90,
-                    ),
+                    SvgPicture.asset(AppAssets.uncheck, width: 90),
                     const Text(
                       'Congratulations!',
-                      style: TextStyle(
-                        color: AppColor.primary,
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(color: AppColor.primary, fontSize: 16),
                     ),
                   ],
                 ),
@@ -77,51 +69,54 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Transform.translate(
-                        offset: const Offset(10, 0),
-                        child: IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () async {
-                            bool? finish = await showDialog(
-                              context: context,
-                              builder: (_) => const NextScheduleClose(),
-                            );
-                            if (finish != null && finish) {
-                              ref.read(todoProvider.notifier).complete(
-                                    todo: widget.args.todo,
-                                    completeDay: widget.args.completeDay,
-                                    nextDay: null,
-                                  );
-                              if (!mounted) return;
-                              Navigator.pop(context);
-                            }
-                          },
+                  if (state.taskType == TaskType.recurring)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Transform.translate(
+                          offset: const Offset(10, 0),
+                          child: IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () async {
+                              bool? finish = await showDialog(
+                                context: context,
+                                builder: (_) => const NextScheduleClose(),
+                              );
+                              if (finish != null && finish) {
+                                ref
+                                    .read(todoProvider.notifier)
+                                    .complete(
+                                      todo: widget.args.todo,
+                                      completeDay: widget.args.completeDay,
+                                      nextDay: null,
+                                    );
+                                if (!mounted) return;
+                                Navigator.pop(context);
+                              }
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                   Text(
                     context.l10n.completeYurudo,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(color: AppColor.emphasis),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge!.copyWith(color: AppColor.emphasis),
                   ),
-                  const SizedBox(height: 12),
-                  Text(
-                    context.l10n.setNextYurudo,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  if (state.taskType == TaskType.recurring)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Text(
+                        context.l10n.setNextYurudo,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
                   const SizedBox(height: 6),
                   Theme(
                     data: Theme.of(context).copyWith(
                       dividerColor: Colors.transparent,
-                      dividerTheme: const DividerThemeData(
-                        space: 0,
-                      ),
+                      dividerTheme: const DividerThemeData(space: 0),
                     ),
                     child: ExpansionTile(
                       tilePadding: const EdgeInsets.all(0),
@@ -139,12 +134,17 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
                             label: context.l10n.selectCompleteDay,
                             selectDate: state.completeDay,
                             firstDate:
-                                widget.args.todo.completeDate.lastOrNull?.add(const Duration(days: 1)) ??
-                                    DateTime.now()
-                                        .subtract(const Duration(days: 366)),
+                                widget.args.todo.completeDate.lastOrNull?.add(
+                                  const Duration(days: 1),
+                                ) ??
+                                DateTime.now().subtract(
+                                  const Duration(days: 366),
+                                ),
                             lastDate: DateTime.now(),
                             onSelectDate: (value) {
-                              ref.read(provider.notifier).setCompleteDay(
+                              ref
+                                  .read(provider.notifier)
+                                  .setCompleteDay(
                                     value,
                                     widget.args.todo.span ?? 1,
                                   );
@@ -154,24 +154,23 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12),
-                    child: SelectDayWidget(
-                      label: context.l10n.expectedDate,
-                      selectDate: state.selectDay,
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime.now().add(const Duration(days: 366)),
-                      onSelectDate: (value) {
-                        ref.read(provider.notifier).changeDate(value);
-                      },
+                  if (state.taskType == TaskType.recurring)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: SelectDayWidget(
+                        label: context.l10n.expectedDate,
+                        selectDate: state.selectDay,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime.now().add(const Duration(days: 366)),
+                        onSelectDate: (value) {
+                          ref.read(provider.notifier).changeDate(value);
+                        },
+                      ),
                     ),
-                  ),
                   if (ref.watch(provider).hasError)
                     Text(
                       ref.watch(provider).errorMessage,
-                      style: const TextStyle(
-                        color: AppColor.emphasis,
-                      ),
+                      style: const TextStyle(color: AppColor.emphasis),
                     ),
                   Container(
                     width: double.infinity,
@@ -179,22 +178,7 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
                     child: ElevatedButton(
                       style: AppStyle.primaryButton,
                       onPressed: () {
-                        if (!ref
-                            .read(provider)
-                            .selectDay
-                            .isAfterDay(ref.read(provider).completeDay)) {
-                          ref.read(provider.notifier).setError(
-                                true,
-                                msg: context.l10n.afterCompleteDay,
-                              );
-                          return;
-                        }
-                        ref.read(todoProvider.notifier).complete(
-                              todo: widget.args.todo,
-                              completeDay: state.completeDay,
-                              nextDay: ref.read(provider).selectDay,
-                            );
-                        Navigator.pop(context);
+                        ref.read(provider.notifier).onClickOk(context);
                       },
                       child: const Text('OK'),
                     ),
@@ -210,9 +194,7 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               foregroundColor: AppColor.emphasis,
-              textStyle: context.textTheme.bodyMedium!.copyWith(
-                fontSize: 13,
-              ),
+              textStyle: context.textTheme.bodyMedium!.copyWith(fontSize: 13),
             ),
             onPressed: () => Navigator.pop(context),
             child: Text(context.l10n.undoCheck),

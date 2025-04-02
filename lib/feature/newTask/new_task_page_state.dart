@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:routine_app/core/enums/TaskType.dart';
 import 'package:routine_app/core/services/ad_service.dart';
 import 'package:routine_app/core/utils/contextEx.dart';
 import 'package:routine_app/core/utils/date.dart';
@@ -114,5 +115,3 @@ abstract class NewTaskPageState with _$NewTaskPageState {
     @Default('') errorMessage,
   }) = _NewTaskPageState;
 }
-
-enum TaskType { recurring, single }
