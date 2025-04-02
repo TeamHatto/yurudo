@@ -14,7 +14,6 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '../../repository/todo/todo.dart';
 
-
 final notificationServiceProvider = Provider((ref) => NotificationService());
 
 class NotificationService {
@@ -30,21 +29,21 @@ class NotificationService {
   }
 
   Future<void> requestPermissions() async {
-    _flnp.initialize(const InitializationSettings(
-      android: AndroidInitializationSettings('ic_notification'),
-      iOS: DarwinInitializationSettings(),
-    ));
+    _flnp.initialize(
+      const InitializationSettings(
+        android: AndroidInitializationSettings('ic_notification'),
+        iOS: DarwinInitializationSettings(),
+      ),
+    );
     await _flnp
         .resolvePlatformSpecificImplementation<
-            IOSFlutterLocalNotificationsPlugin>()
-        ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+          IOSFlutterLocalNotificationsPlugin
+        >()
+        ?.requestPermissions(alert: true, badge: true, sound: true);
     await _flnp
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.requestNotificationsPermission();
   }
 
@@ -52,6 +51,7 @@ class NotificationService {
     int id = 0,
     required DateTime day,
     required String message,
+    required int time,
     required BuildContext context,
     DateTime? dateTime, // test用
   }) async {
@@ -60,7 +60,7 @@ class NotificationService {
       day.year,
       day.month,
       day.day,
-      notificationTime,
+      time,
     );
 
     if (dateTime != null) {
@@ -92,9 +92,7 @@ class NotificationService {
           channelDescription: context.l10n.notifyDailyYurudo,
           icon: 'ic_notification',
         ),
-        iOS: const DarwinNotificationDetails(
-          badgeNumber: 1,
-        ),
+        iOS: const DarwinNotificationDetails(badgeNumber: 1),
       ),
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
@@ -112,6 +110,7 @@ class NotificationService {
     registerMessage(
       id: 1000,
       day: time,
+      time: time.hour,
       message: 'test title [${5.toTimeString(context)}]\n',
       context: context,
       dateTime: time,
@@ -123,27 +122,68 @@ class NotificationService {
   Future<void> setNotifications(List<Todo> todos, BuildContext context) async {
     await _cancelNotification();
 
+    // 1週間分の通知をセットする
     final today = DateTime.now();
     for (int i = 1; i <= 14; i++) {
-      final tomorrow = today.add(Duration(days: i));
-      final tomorrowTodo = todos
-          .where((todo) =>
-              todo.expectedDate != null &&
-              todo.expectedDate!.isSameDay(tomorrow) &&
-              todo.remind)
-          .toList();
-      String message = '';
-      for (var j = 0; j < min(3, tomorrowTodo.length); j++) {
-        message +=
-            '${tomorrowTodo[j].name} [${tomorrowTodo[j].time.toTimeString(context)}]\n';
+      final targetDate = today.add(Duration(days: i));
+      final tomorrowTodo =
+          todos
+              .where(
+                (todo) =>
+                    todo.expectedDate != null &&
+                    todo.expectedDate!.isSameDay(targetDate) &&
+                    todo.remind,
+              )
+              .toList();
+
+      if (tomorrowTodo.isNotEmpty) {
+        // 通知対象がある場合は、その日の予定を通知する
+        List<String> messageList = [];
+        for (var j = 0; j < min(3, tomorrowTodo.length); j++) {
+          messageList.add(
+            '${tomorrowTodo[j].name} [${tomorrowTodo[j].time.toTimeString(context)}]',
+          );
+        }
+        registerMessage(
+          id: i,
+          day: targetDate,
+          time: notificationTime,
+          message: messageList.join('\n'),
+          context: context,
+        );
+      } else {
+        // 通知対象がない場合は、過去のゆるDOを通知する
+        final pastTodoSize =
+            todos.where((todo) => todo.isPastTodo(targetDate)).toList().length;
+        if (pastTodoSize != 0) {
+          registerMessage(
+            id: i,
+            day: targetDate,
+            time: notificationTime,
+            message: context.l10n.doPastYurudoCount(pastTodoSize),
+            context: context,
+          );
+        }
       }
-      registerMessage(id: i, day: tomorrow, message: message, context: context);
+
+      // 夜の通知
+      registerMessage(
+        id: 100 + i,
+        day: targetDate,
+        time: 20,
+        message: context.l10n.letsRegisterYurudo,
+        context: context,
+      );
     }
     await _flnp.getActiveNotifications();
   }
 
   void onDidReceiveLocalNotification(
-      int id, String? title, String? body, String? payload) {
+    int id,
+    String? title,
+    String? body,
+    String? payload,
+  ) {
     Logger().i('id ----- $id');
   }
 }

@@ -245,5 +245,15 @@
   "titleExample13": "Think about travel destinations to visit (every 2 months)",
   "titleExample14": "Plan a overseas trip (every 3 months)",
   "titleExample15": "Review whether you really need your subscriptions (every 4 months)",
-  "titleExample16": "Replace the closet moth repellent (every 6 months)"
+  "titleExample16": "Replace the closet moth repellent (every 6 months)",
+
+  "letsRegisterYurudo": "Register the Yuru-DO you thought of today",
+  "doPastYurudoCount": "There are {count} overdue Yuru-DOs",
+  "@doPastYurudoCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  }
 }

@@ -202,5 +202,15 @@
   "titleExample13": "【国内】行って見たい旅行先を考える(2か月に1回)",
   "titleExample14": "温泉に行きたいかどうかを考えてみる(3か月に1回)",
   "titleExample15": "サブスクを本当に必要かどうか見直す(4か月に1回)",
-  "titleExample16": "クローゼットの防虫剤を交換する(6か月に1回)"
+  "titleExample16": "クローゼットの防虫剤を交換する(6か月に1回)",
+
+  "letsRegisterYurudo": "今日思いついたゆるDOを登録しよう",
+  "doPastYurudoCount": "実施が遅れているゆるDOが{count}個あります",
+  "@doPastYurudoCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  }
 }
