@@ -146,7 +146,7 @@ class _NextScheduleState extends ConsumerState<NextSchedule> {
                             onSelectDate: (value) {
                               ref.read(provider.notifier).setCompleteDay(
                                     value,
-                                    widget.args.todo.span,
+                                    widget.args.todo.span ?? 1,
                                   );
                             },
                           ),

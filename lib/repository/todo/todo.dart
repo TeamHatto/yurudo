@@ -7,8 +7,8 @@ class Todo {
   /// タスク名
   final String name;
 
-  /// スパン　○日に1回
-  final int span;
+  /// スパン　○日に1回、単発ならnull
+  final int? span;
 
   /// リマインド
   final bool remind;
@@ -168,15 +168,16 @@ class Todo {
     if (('${map['completeDate']}').isEmpty) {
       completeDate = [];
     } else {
-      completeDate = ('${map['completeDate']}')
-          .split(',')
-          .map((e) => DateTime.parse(e))
-          .toList();
+      completeDate =
+          ('${map['completeDate']}')
+              .split(',')
+              .map((e) => DateTime.parse(e))
+              .toList();
     }
     return Todo(
       id: map['id'] as int,
       name: map['name'] as String,
-      span: map['span'] as int,
+      span: map['span'] as int?,
       remind: map['remind'] == 1 ? true : false,
       time: map['time'] as int?,
       count: map['count'] as int,
@@ -238,5 +239,31 @@ class Todo {
     return expectedDate.isBeforeDay(date) ||
         preExpectedDate.isBeforeDay(date) &&
             completeDate.any((d) => d.isSameDay(date));
+  }
+
+  /// 未来も含めて実施予定日かどうか
+  bool isExpectedDay(DateTime date) {
+    final today = DateTime.now();
+
+    // 実施予定日が設定されているか
+    if (expectedDate == null) return false;
+
+    // 実施予定日が今日以降か
+    if (expectedDate.isAfterDay(today) ||
+        expectedDate.isSameDay(today)) {
+      return false;
+    }
+
+    // expectedDayならtrue
+    if (expectedDate.isSameDay(date)) return true;
+
+    // スパン日後ならtrue
+    if (span != null) {
+      return (expectedDate.isSameDay(date) ||
+              expectedDate.isBeforeDay(date) &&
+                  expectedDate!.dateDiff(date) % span! == 0); // 当日か、スパン日後
+    }
+
+    return false;
   }
 }

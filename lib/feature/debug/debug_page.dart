@@ -43,7 +43,6 @@ class DebugPage extends ConsumerWidget {
                     name: '期限${yesterday.month}月${yesterday.day}日',
                     span: 1,
                     firstDay: DateTime.now().add(const Duration(days: -1)),
-                    remind: true,
                     categoryId: 0,
                     time: 5,
                   );
@@ -69,7 +68,6 @@ class DebugPage extends ConsumerWidget {
                       name: '実施予定日${value.month}月${value.day}日',
                       span: 1,
                       firstDay: value,
-                      remind: true,
                       categoryId: 0,
                       time: 5,
                     );
@@ -88,7 +86,6 @@ class DebugPage extends ConsumerWidget {
                     name: '前日に実施済みのタスク(2日に1回)',
                     span: 2,
                     firstDay: DateTime.now().add(const Duration(days: 1)),
-                    remind: true,
                     categoryId: 0,
                     completeDate: [
                       DateTime.now().add(const Duration(days: -1))

@@ -47,10 +47,18 @@ class _ListPageState extends ConsumerState<ListPage> {
         todos.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
         break;
       case SortType.spanAsc:
-        todos.sort((a, b) => a.span.compareTo(b.span));
+        todos.sort((a, b) {
+          if (a.span == null) return 1;
+          if (b.span == null) return -1;
+          return a.span!.compareTo(b.span!);
+        });
         break;
       case SortType.spanDesc:
-        todos.sort((a, b) => b.span.compareTo(a.span));
+        todos.sort((a, b) {
+          if (a.span == null) return -1;
+          if (b.span == null) return 1;
+          return b.span!.compareTo(a.span!);
+        });
         break;
       case SortType.timeAsc:
         todos.sort((a, b) => a.time.compareToEx(b.time));

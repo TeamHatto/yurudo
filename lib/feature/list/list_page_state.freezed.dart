@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,166 +10,142 @@ part of 'list_page_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$ListPageState {
-  SortType get sortType => throw _privateConstructorUsedError;
-  List<int> get filterType => throw _privateConstructorUsedError;
 
-  /// Create a copy of ListPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ListPageStateCopyWith<ListPageState> get copyWith =>
-      throw _privateConstructorUsedError;
+ SortType get sortType; List<int> get filterType;
+/// Create a copy of ListPageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ListPageStateCopyWith<ListPageState> get copyWith => _$ListPageStateCopyWithImpl<ListPageState>(this as ListPageState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListPageState&&(identical(other.sortType, sortType) || other.sortType == sortType)&&const DeepCollectionEquality().equals(other.filterType, filterType));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,sortType,const DeepCollectionEquality().hash(filterType));
+
+@override
+String toString() {
+  return 'ListPageState(sortType: $sortType, filterType: $filterType)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ListPageStateCopyWith<$Res> {
-  factory $ListPageStateCopyWith(
-          ListPageState value, $Res Function(ListPageState) then) =
-      _$ListPageStateCopyWithImpl<$Res, ListPageState>;
-  @useResult
-  $Res call({SortType sortType, List<int> filterType});
-}
+abstract mixin class $ListPageStateCopyWith<$Res>  {
+  factory $ListPageStateCopyWith(ListPageState value, $Res Function(ListPageState) _then) = _$ListPageStateCopyWithImpl;
+@useResult
+$Res call({
+ SortType sortType, List<int> filterType
+});
 
+
+
+
+}
 /// @nodoc
-class _$ListPageStateCopyWithImpl<$Res, $Val extends ListPageState>
+class _$ListPageStateCopyWithImpl<$Res>
     implements $ListPageStateCopyWith<$Res> {
-  _$ListPageStateCopyWithImpl(this._value, this._then);
+  _$ListPageStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ListPageState _self;
+  final $Res Function(ListPageState) _then;
 
-  /// Create a copy of ListPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sortType = null,
-    Object? filterType = null,
-  }) {
-    return _then(_value.copyWith(
-      sortType: null == sortType
-          ? _value.sortType
-          : sortType // ignore: cast_nullable_to_non_nullable
-              as SortType,
-      filterType: null == filterType
-          ? _value.filterType
-          : filterType // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-    ) as $Val);
-  }
+/// Create a copy of ListPageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? sortType = null,Object? filterType = null,}) {
+  return _then(_self.copyWith(
+sortType: null == sortType ? _self.sortType : sortType // ignore: cast_nullable_to_non_nullable
+as SortType,filterType: null == filterType ? _self.filterType : filterType // ignore: cast_nullable_to_non_nullable
+as List<int>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ListPageStateImplCopyWith<$Res>
-    implements $ListPageStateCopyWith<$Res> {
-  factory _$$ListPageStateImplCopyWith(
-          _$ListPageStateImpl value, $Res Function(_$ListPageStateImpl) then) =
-      __$$ListPageStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({SortType sortType, List<int> filterType});
 }
 
-/// @nodoc
-class __$$ListPageStateImplCopyWithImpl<$Res>
-    extends _$ListPageStateCopyWithImpl<$Res, _$ListPageStateImpl>
-    implements _$$ListPageStateImplCopyWith<$Res> {
-  __$$ListPageStateImplCopyWithImpl(
-      _$ListPageStateImpl _value, $Res Function(_$ListPageStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ListPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sortType = null,
-    Object? filterType = null,
-  }) {
-    return _then(_$ListPageStateImpl(
-      sortType: null == sortType
-          ? _value.sortType
-          : sortType // ignore: cast_nullable_to_non_nullable
-              as SortType,
-      filterType: null == filterType
-          ? _value._filterType
-          : filterType // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$ListPageStateImpl implements _ListPageState {
-  const _$ListPageStateImpl(
-      {this.sortType = SortType.addDayAsc,
-      final List<int> filterType = const []})
-      : _filterType = filterType;
 
-  @override
-  @JsonKey()
-  final SortType sortType;
-  final List<int> _filterType;
-  @override
-  @JsonKey()
-  List<int> get filterType {
-    if (_filterType is EqualUnmodifiableListView) return _filterType;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filterType);
-  }
+class _ListPageState implements ListPageState {
+  const _ListPageState({this.sortType = SortType.addDayAsc, final  List<int> filterType = const []}): _filterType = filterType;
+  
 
-  @override
-  String toString() {
-    return 'ListPageState(sortType: $sortType, filterType: $filterType)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ListPageStateImpl &&
-            (identical(other.sortType, sortType) ||
-                other.sortType == sortType) &&
-            const DeepCollectionEquality()
-                .equals(other._filterType, _filterType));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, sortType, const DeepCollectionEquality().hash(_filterType));
-
-  /// Create a copy of ListPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ListPageStateImplCopyWith<_$ListPageStateImpl> get copyWith =>
-      __$$ListPageStateImplCopyWithImpl<_$ListPageStateImpl>(this, _$identity);
+@override@JsonKey() final  SortType sortType;
+ final  List<int> _filterType;
+@override@JsonKey() List<int> get filterType {
+  if (_filterType is EqualUnmodifiableListView) return _filterType;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_filterType);
 }
 
-abstract class _ListPageState implements ListPageState {
-  const factory _ListPageState(
-      {final SortType sortType,
-      final List<int> filterType}) = _$ListPageStateImpl;
 
-  @override
-  SortType get sortType;
-  @override
-  List<int> get filterType;
+/// Create a copy of ListPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ListPageStateCopyWith<_ListPageState> get copyWith => __$ListPageStateCopyWithImpl<_ListPageState>(this, _$identity);
 
-  /// Create a copy of ListPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ListPageStateImplCopyWith<_$ListPageStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListPageState&&(identical(other.sortType, sortType) || other.sortType == sortType)&&const DeepCollectionEquality().equals(other._filterType, _filterType));
 }
+
+
+@override
+int get hashCode => Object.hash(runtimeType,sortType,const DeepCollectionEquality().hash(_filterType));
+
+@override
+String toString() {
+  return 'ListPageState(sortType: $sortType, filterType: $filterType)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ListPageStateCopyWith<$Res> implements $ListPageStateCopyWith<$Res> {
+  factory _$ListPageStateCopyWith(_ListPageState value, $Res Function(_ListPageState) _then) = __$ListPageStateCopyWithImpl;
+@override @useResult
+$Res call({
+ SortType sortType, List<int> filterType
+});
+
+
+
+
+}
+/// @nodoc
+class __$ListPageStateCopyWithImpl<$Res>
+    implements _$ListPageStateCopyWith<$Res> {
+  __$ListPageStateCopyWithImpl(this._self, this._then);
+
+  final _ListPageState _self;
+  final $Res Function(_ListPageState) _then;
+
+/// Create a copy of ListPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? sortType = null,Object? filterType = null,}) {
+  return _then(_ListPageState(
+sortType: null == sortType ? _self.sortType : sortType // ignore: cast_nullable_to_non_nullable
+as SortType,filterType: null == filterType ? _self._filterType : filterType // ignore: cast_nullable_to_non_nullable
+as List<int>,
+  ));
+}
+
+
+}
+
+// dart format on

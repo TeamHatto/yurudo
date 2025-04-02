@@ -57,7 +57,7 @@ class HomePageStateNotifier extends StateNotifier<HomePageState> {
 }
 
 @freezed
-class HomePageState with _$HomePageState {
+abstract class HomePageState with _$HomePageState {
   const HomePageState._();
 
   const factory HomePageState({

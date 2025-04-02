@@ -107,7 +107,7 @@ class SignInNotifier extends StateNotifier<SignInState> {
 }
 
 @freezed
-class SignInState with _$SignInState {
+abstract class SignInState with _$SignInState {
   const factory SignInState({
     @Default(false) bool isLoading,
     @Default(null) User? user,

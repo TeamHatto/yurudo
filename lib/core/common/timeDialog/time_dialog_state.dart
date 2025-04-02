@@ -16,7 +16,7 @@ class TimeDialogStateNotifier extends StateNotifier<TimeDialogState> {
 }
 
 @freezed
-class TimeDialogState with _$TimeDialogState {
+abstract class TimeDialogState with _$TimeDialogState {
   const factory TimeDialogState({
     /// 選んでいる時間
     @Default(5) int time,

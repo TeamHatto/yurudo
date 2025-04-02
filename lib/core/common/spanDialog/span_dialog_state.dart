@@ -35,7 +35,7 @@ class SpanDialogStateNotifier extends StateNotifier<SpanDialogState> {
 }
 
 @freezed
-class SpanDialogState with _$SpanDialogState {
+abstract class SpanDialogState with _$SpanDialogState {
   const factory SpanDialogState({
     /// 選んでいる日にち
     @Default(1) int span,

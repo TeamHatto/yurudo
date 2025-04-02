@@ -47,7 +47,7 @@ class ListPageStateNotifier extends StateNotifier<ListPageState> {
 }
 
 @freezed
-class ListPageState with _$ListPageState {
+abstract class ListPageState with _$ListPageState {
   const factory ListPageState({
     @Default(SortType.addDayAsc) SortType sortType,
     @Default([]) List<int> filterType,

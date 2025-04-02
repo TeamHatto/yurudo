@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,310 +10,176 @@ part of 'new_task_page_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$NewTaskPageState {
-  String get name => throw _privateConstructorUsedError;
-  int? get span => throw _privateConstructorUsedError;
-  bool get remind => throw _privateConstructorUsedError;
-  Category? get category => throw _privateConstructorUsedError;
-  int? get time => throw _privateConstructorUsedError;
-  DateTime? get firstDay => throw _privateConstructorUsedError;
-  dynamic get hasError => throw _privateConstructorUsedError;
-  dynamic get errorMessage => throw _privateConstructorUsedError;
 
-  /// Create a copy of NewTaskPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $NewTaskPageStateCopyWith<NewTaskPageState> get copyWith =>
-      throw _privateConstructorUsedError;
+ TaskType get taskType; String get name; int? get span; Category? get category; int? get time; DateTime? get firstDay; dynamic get hasError; dynamic get errorMessage;
+/// Create a copy of NewTaskPageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NewTaskPageStateCopyWith<NewTaskPageState> get copyWith => _$NewTaskPageStateCopyWithImpl<NewTaskPageState>(this as NewTaskPageState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewTaskPageState&&(identical(other.taskType, taskType) || other.taskType == taskType)&&(identical(other.name, name) || other.name == name)&&(identical(other.span, span) || other.span == span)&&(identical(other.category, category) || other.category == category)&&(identical(other.time, time) || other.time == time)&&(identical(other.firstDay, firstDay) || other.firstDay == firstDay)&&const DeepCollectionEquality().equals(other.hasError, hasError)&&const DeepCollectionEquality().equals(other.errorMessage, errorMessage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,taskType,name,span,category,time,firstDay,const DeepCollectionEquality().hash(hasError),const DeepCollectionEquality().hash(errorMessage));
+
+@override
+String toString() {
+  return 'NewTaskPageState(taskType: $taskType, name: $name, span: $span, category: $category, time: $time, firstDay: $firstDay, hasError: $hasError, errorMessage: $errorMessage)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $NewTaskPageStateCopyWith<$Res> {
-  factory $NewTaskPageStateCopyWith(
-          NewTaskPageState value, $Res Function(NewTaskPageState) then) =
-      _$NewTaskPageStateCopyWithImpl<$Res, NewTaskPageState>;
-  @useResult
-  $Res call(
-      {String name,
-      int? span,
-      bool remind,
-      Category? category,
-      int? time,
-      DateTime? firstDay,
-      dynamic hasError,
-      dynamic errorMessage});
+abstract mixin class $NewTaskPageStateCopyWith<$Res>  {
+  factory $NewTaskPageStateCopyWith(NewTaskPageState value, $Res Function(NewTaskPageState) _then) = _$NewTaskPageStateCopyWithImpl;
+@useResult
+$Res call({
+ TaskType taskType, String name, int? span, Category? category, int? time, DateTime? firstDay, dynamic hasError, dynamic errorMessage
+});
 
-  $CategoryCopyWith<$Res>? get category;
+
+$CategoryCopyWith<$Res>? get category;
+
 }
-
 /// @nodoc
-class _$NewTaskPageStateCopyWithImpl<$Res, $Val extends NewTaskPageState>
+class _$NewTaskPageStateCopyWithImpl<$Res>
     implements $NewTaskPageStateCopyWith<$Res> {
-  _$NewTaskPageStateCopyWithImpl(this._value, this._then);
+  _$NewTaskPageStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final NewTaskPageState _self;
+  final $Res Function(NewTaskPageState) _then;
 
-  /// Create a copy of NewTaskPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? span = freezed,
-    Object? remind = null,
-    Object? category = freezed,
-    Object? time = freezed,
-    Object? firstDay = freezed,
-    Object? hasError = freezed,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      span: freezed == span
-          ? _value.span
-          : span // ignore: cast_nullable_to_non_nullable
-              as int?,
-      remind: null == remind
-          ? _value.remind
-          : remind // ignore: cast_nullable_to_non_nullable
-              as bool,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as int?,
-      firstDay: freezed == firstDay
-          ? _value.firstDay
-          : firstDay // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      hasError: freezed == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ) as $Val);
+/// Create a copy of NewTaskPageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? taskType = null,Object? name = null,Object? span = freezed,Object? category = freezed,Object? time = freezed,Object? firstDay = freezed,Object? hasError = freezed,Object? errorMessage = freezed,}) {
+  return _then(_self.copyWith(
+taskType: null == taskType ? _self.taskType : taskType // ignore: cast_nullable_to_non_nullable
+as TaskType,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,span: freezed == span ? _self.span : span // ignore: cast_nullable_to_non_nullable
+as int?,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as Category?,time: freezed == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as int?,firstDay: freezed == firstDay ? _self.firstDay : firstDay // ignore: cast_nullable_to_non_nullable
+as DateTime?,hasError: freezed == hasError ? _self.hasError : hasError // ignore: cast_nullable_to_non_nullable
+as dynamic,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as dynamic,
+  ));
+}
+/// Create a copy of NewTaskPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryCopyWith<$Res>? get category {
+    if (_self.category == null) {
+    return null;
   }
 
-  /// Create a copy of NewTaskPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res>? get category {
-    if (_value.category == null) {
-      return null;
-    }
-
-    return $CategoryCopyWith<$Res>(_value.category!, (value) {
-      return _then(_value.copyWith(category: value) as $Val);
-    });
-  }
+  return $CategoryCopyWith<$Res>(_self.category!, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$NewTaskPageStateImplCopyWith<$Res>
-    implements $NewTaskPageStateCopyWith<$Res> {
-  factory _$$NewTaskPageStateImplCopyWith(_$NewTaskPageStateImpl value,
-          $Res Function(_$NewTaskPageStateImpl) then) =
-      __$$NewTaskPageStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String name,
-      int? span,
-      bool remind,
-      Category? category,
-      int? time,
-      DateTime? firstDay,
-      dynamic hasError,
-      dynamic errorMessage});
-
-  @override
-  $CategoryCopyWith<$Res>? get category;
-}
-
-/// @nodoc
-class __$$NewTaskPageStateImplCopyWithImpl<$Res>
-    extends _$NewTaskPageStateCopyWithImpl<$Res, _$NewTaskPageStateImpl>
-    implements _$$NewTaskPageStateImplCopyWith<$Res> {
-  __$$NewTaskPageStateImplCopyWithImpl(_$NewTaskPageStateImpl _value,
-      $Res Function(_$NewTaskPageStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of NewTaskPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? span = freezed,
-    Object? remind = null,
-    Object? category = freezed,
-    Object? time = freezed,
-    Object? firstDay = freezed,
-    Object? hasError = freezed,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_$NewTaskPageStateImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      span: freezed == span
-          ? _value.span
-          : span // ignore: cast_nullable_to_non_nullable
-              as int?,
-      remind: null == remind
-          ? _value.remind
-          : remind // ignore: cast_nullable_to_non_nullable
-              as bool,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as int?,
-      firstDay: freezed == firstDay
-          ? _value.firstDay
-          : firstDay // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      hasError: freezed == hasError ? _value.hasError! : hasError,
-      errorMessage:
-          freezed == errorMessage ? _value.errorMessage! : errorMessage,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$NewTaskPageStateImpl implements _NewTaskPageState {
-  const _$NewTaskPageStateImpl(
-      {required this.name,
-      required this.span,
-      required this.remind,
-      this.category = null,
-      this.time = null,
-      required this.firstDay,
-      this.hasError = false,
-      this.errorMessage = ''});
 
-  @override
-  final String name;
-  @override
-  final int? span;
-  @override
-  final bool remind;
-  @override
-  @JsonKey()
-  final Category? category;
-  @override
-  @JsonKey()
-  final int? time;
-  @override
-  final DateTime? firstDay;
-  @override
-  @JsonKey()
-  final dynamic hasError;
-  @override
-  @JsonKey()
-  final dynamic errorMessage;
+class _NewTaskPageState implements NewTaskPageState {
+  const _NewTaskPageState({required this.taskType, required this.name, required this.span, this.category = null, this.time = null, required this.firstDay, this.hasError = false, this.errorMessage = ''});
+  
 
-  @override
-  String toString() {
-    return 'NewTaskPageState(name: $name, span: $span, remind: $remind, category: $category, time: $time, firstDay: $firstDay, hasError: $hasError, errorMessage: $errorMessage)';
-  }
+@override final  TaskType taskType;
+@override final  String name;
+@override final  int? span;
+@override@JsonKey() final  Category? category;
+@override@JsonKey() final  int? time;
+@override final  DateTime? firstDay;
+@override@JsonKey() final  dynamic hasError;
+@override@JsonKey() final  dynamic errorMessage;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NewTaskPageStateImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.span, span) || other.span == span) &&
-            (identical(other.remind, remind) || other.remind == remind) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.time, time) || other.time == time) &&
-            (identical(other.firstDay, firstDay) ||
-                other.firstDay == firstDay) &&
-            const DeepCollectionEquality().equals(other.hasError, hasError) &&
-            const DeepCollectionEquality()
-                .equals(other.errorMessage, errorMessage));
-  }
+/// Create a copy of NewTaskPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NewTaskPageStateCopyWith<_NewTaskPageState> get copyWith => __$NewTaskPageStateCopyWithImpl<_NewTaskPageState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      span,
-      remind,
-      category,
-      time,
-      firstDay,
-      const DeepCollectionEquality().hash(hasError),
-      const DeepCollectionEquality().hash(errorMessage));
 
-  /// Create a copy of NewTaskPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NewTaskPageStateImplCopyWith<_$NewTaskPageStateImpl> get copyWith =>
-      __$$NewTaskPageStateImplCopyWithImpl<_$NewTaskPageStateImpl>(
-          this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewTaskPageState&&(identical(other.taskType, taskType) || other.taskType == taskType)&&(identical(other.name, name) || other.name == name)&&(identical(other.span, span) || other.span == span)&&(identical(other.category, category) || other.category == category)&&(identical(other.time, time) || other.time == time)&&(identical(other.firstDay, firstDay) || other.firstDay == firstDay)&&const DeepCollectionEquality().equals(other.hasError, hasError)&&const DeepCollectionEquality().equals(other.errorMessage, errorMessage));
 }
 
-abstract class _NewTaskPageState implements NewTaskPageState {
-  const factory _NewTaskPageState(
-      {required final String name,
-      required final int? span,
-      required final bool remind,
-      final Category? category,
-      final int? time,
-      required final DateTime? firstDay,
-      final dynamic hasError,
-      final dynamic errorMessage}) = _$NewTaskPageStateImpl;
 
-  @override
-  String get name;
-  @override
-  int? get span;
-  @override
-  bool get remind;
-  @override
-  Category? get category;
-  @override
-  int? get time;
-  @override
-  DateTime? get firstDay;
-  @override
-  dynamic get hasError;
-  @override
-  dynamic get errorMessage;
+@override
+int get hashCode => Object.hash(runtimeType,taskType,name,span,category,time,firstDay,const DeepCollectionEquality().hash(hasError),const DeepCollectionEquality().hash(errorMessage));
 
-  /// Create a copy of NewTaskPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NewTaskPageStateImplCopyWith<_$NewTaskPageStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'NewTaskPageState(taskType: $taskType, name: $name, span: $span, category: $category, time: $time, firstDay: $firstDay, hasError: $hasError, errorMessage: $errorMessage)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NewTaskPageStateCopyWith<$Res> implements $NewTaskPageStateCopyWith<$Res> {
+  factory _$NewTaskPageStateCopyWith(_NewTaskPageState value, $Res Function(_NewTaskPageState) _then) = __$NewTaskPageStateCopyWithImpl;
+@override @useResult
+$Res call({
+ TaskType taskType, String name, int? span, Category? category, int? time, DateTime? firstDay, dynamic hasError, dynamic errorMessage
+});
+
+
+@override $CategoryCopyWith<$Res>? get category;
+
+}
+/// @nodoc
+class __$NewTaskPageStateCopyWithImpl<$Res>
+    implements _$NewTaskPageStateCopyWith<$Res> {
+  __$NewTaskPageStateCopyWithImpl(this._self, this._then);
+
+  final _NewTaskPageState _self;
+  final $Res Function(_NewTaskPageState) _then;
+
+/// Create a copy of NewTaskPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? taskType = null,Object? name = null,Object? span = freezed,Object? category = freezed,Object? time = freezed,Object? firstDay = freezed,Object? hasError = freezed,Object? errorMessage = freezed,}) {
+  return _then(_NewTaskPageState(
+taskType: null == taskType ? _self.taskType : taskType // ignore: cast_nullable_to_non_nullable
+as TaskType,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,span: freezed == span ? _self.span : span // ignore: cast_nullable_to_non_nullable
+as int?,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as Category?,time: freezed == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as int?,firstDay: freezed == firstDay ? _self.firstDay : firstDay // ignore: cast_nullable_to_non_nullable
+as DateTime?,hasError: freezed == hasError ? _self.hasError! : hasError ,errorMessage: freezed == errorMessage ? _self.errorMessage! : errorMessage ,
+  ));
+}
+
+/// Create a copy of NewTaskPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryCopyWith<$Res>? get category {
+    if (_self.category == null) {
+    return null;
+  }
+
+  return $CategoryCopyWith<$Res>(_self.category!, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+// dart format on

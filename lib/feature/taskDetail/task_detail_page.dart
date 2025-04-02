@@ -77,7 +77,9 @@ class _TaskDetailPageState extends ConsumerState<TaskDetailPage> {
   Widget build(BuildContext context) {
     final TaskDetailPageState state = ref.watch(provider);
     final deviceWidth = MediaQuery.of(context).size.width;
-    _spanController.text = state.span.toSpanString(context);
+    if (state.span != null) {
+      _spanController.text = state.span.toSpanString(context);
+    }
     _timeController.text = state.time.toTimeString(context);
 
     if (_isInit) {
@@ -144,28 +146,31 @@ class _TaskDetailPageState extends ConsumerState<TaskDetailPage> {
                       width: deviceWidth / 2 - 20,
                       child: Column(
                         children: [
-                          AppTextField(
-                            label: context.l10n.span,
-                            readonly: true,
-                            controller: _spanController,
-                            onTap: () {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return SpanDialog(
-                                    onConfirm: (number, spanType) {
-                                      int span = number * spanType.term;
-                                      _spanController.text =
-                                          span.toSpanString(context);
-                                      ref.read(provider.notifier).setSpan(span);
-                                    },
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 30),
+                          if (state.span != null)
+                            AppTextField(
+                              label: context.l10n.span,
+                              readonly: true,
+                              controller: _spanController,
+                              onTap: () {
+                                FocusManager.instance.primaryFocus?.unfocus();
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return SpanDialog(
+                                      onConfirm: (number, spanType) {
+                                        int span = number * spanType.term;
+                                        _spanController.text =
+                                            span.toSpanString(context);
+                                        ref.read(provider.notifier).setSpan(
+                                            span);
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          if (state.span != null)
+                            const SizedBox(height: 30),
                           CategoryTextField(
                             category: state.category,
                             onTap: () {

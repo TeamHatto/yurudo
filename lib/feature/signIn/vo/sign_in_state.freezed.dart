@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,155 +10,136 @@ part of 'sign_in_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$SignInState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SignInStateCopyWith<SignInState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isLoading; User? get user;
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SignInStateCopyWith<SignInState> get copyWith => _$SignInStateCopyWithImpl<SignInState>(this as SignInState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.user, user) || other.user == user));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,user);
+
+@override
+String toString() {
+  return 'SignInState(isLoading: $isLoading, user: $user)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SignInStateCopyWith<$Res> {
-  factory $SignInStateCopyWith(
-          SignInState value, $Res Function(SignInState) then) =
-      _$SignInStateCopyWithImpl<$Res, SignInState>;
-  @useResult
-  $Res call({bool isLoading, User? user});
-}
+abstract mixin class $SignInStateCopyWith<$Res>  {
+  factory $SignInStateCopyWith(SignInState value, $Res Function(SignInState) _then) = _$SignInStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLoading, User? user
+});
 
+
+
+
+}
 /// @nodoc
-class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
+class _$SignInStateCopyWithImpl<$Res>
     implements $SignInStateCopyWith<$Res> {
-  _$SignInStateCopyWithImpl(this._value, this._then);
+  _$SignInStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SignInState _self;
+  final $Res Function(SignInState) _then;
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? user = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-    ) as $Val);
-  }
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? user = freezed,}) {
+  return _then(_self.copyWith(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SignInStateImplCopyWith<$Res>
-    implements $SignInStateCopyWith<$Res> {
-  factory _$$SignInStateImplCopyWith(
-          _$SignInStateImpl value, $Res Function(_$SignInStateImpl) then) =
-      __$$SignInStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool isLoading, User? user});
 }
 
-/// @nodoc
-class __$$SignInStateImplCopyWithImpl<$Res>
-    extends _$SignInStateCopyWithImpl<$Res, _$SignInStateImpl>
-    implements _$$SignInStateImplCopyWith<$Res> {
-  __$$SignInStateImplCopyWithImpl(
-      _$SignInStateImpl _value, $Res Function(_$SignInStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? user = freezed,
-  }) {
-    return _then(_$SignInStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$SignInStateImpl implements _SignInState {
-  const _$SignInStateImpl({this.isLoading = false, this.user = null});
 
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  @JsonKey()
-  final User? user;
+class _SignInState implements SignInState {
+  const _SignInState({this.isLoading = false, this.user = null});
+  
 
-  @override
-  String toString() {
-    return 'SignInState(isLoading: $isLoading, user: $user)';
-  }
+@override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  User? user;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SignInStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.user, user) || other.user == user));
-  }
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SignInStateCopyWith<_SignInState> get copyWith => __$SignInStateCopyWithImpl<_SignInState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, isLoading, user);
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
-      __$$SignInStateImplCopyWithImpl<_$SignInStateImpl>(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.user, user) || other.user == user));
 }
 
-abstract class _SignInState implements SignInState {
-  const factory _SignInState({final bool isLoading, final User? user}) =
-      _$SignInStateImpl;
 
-  @override
-  bool get isLoading;
-  @override
-  User? get user;
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,user);
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'SignInState(isLoading: $isLoading, user: $user)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SignInStateCopyWith<$Res> implements $SignInStateCopyWith<$Res> {
+  factory _$SignInStateCopyWith(_SignInState value, $Res Function(_SignInState) _then) = __$SignInStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isLoading, User? user
+});
+
+
+
+
+}
+/// @nodoc
+class __$SignInStateCopyWithImpl<$Res>
+    implements _$SignInStateCopyWith<$Res> {
+  __$SignInStateCopyWithImpl(this._self, this._then);
+
+  final _SignInState _self;
+  final $Res Function(_SignInState) _then;
+
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? user = freezed,}) {
+  return _then(_SignInState(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,
+  ));
+}
+
+
+}
+
+// dart format on

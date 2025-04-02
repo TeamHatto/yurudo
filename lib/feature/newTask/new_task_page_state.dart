@@ -1,23 +1,34 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:routine_app/core/services/ad_service.dart';
+import 'package:routine_app/core/utils/contextEx.dart';
+import 'package:routine_app/core/utils/date.dart';
+import 'package:routine_app/repository/todo/todo_provider.dart';
 
 import '../../repository/category/category.dart';
 
 part 'new_task_page_state.freezed.dart';
 
 final newTaskPageStateProvider = StateNotifierProvider.autoDispose<
-    NewTaskPageStateNotifier, NewTaskPageState>((ref) {
-  return NewTaskPageStateNotifier();
+  NewTaskPageStateNotifier,
+  NewTaskPageState
+>((ref) {
+  return NewTaskPageStateNotifier(ref);
 });
 
 class NewTaskPageStateNotifier extends StateNotifier<NewTaskPageState> {
-  NewTaskPageStateNotifier()
-      : super(const NewTaskPageState(
+  NewTaskPageStateNotifier(this.ref)
+    : super(
+        const NewTaskPageState(
+          taskType: TaskType.recurring,
           name: '',
           span: null,
-          remind: true,
           firstDay: null,
-        ));
+        ),
+      );
+
+  final Ref ref;
 
   void setName(String name) {
     state = state.copyWith(name: name);
@@ -39,21 +50,63 @@ class NewTaskPageStateNotifier extends StateNotifier<NewTaskPageState> {
     state = state.copyWith(firstDay: firstDay);
   }
 
-  void setRemind(bool remind) {
-    state = state.copyWith(remind: remind);
-  }
-
   void setHasError(bool error, String message) {
     state = state.copyWith(hasError: error, errorMessage: message);
+  }
+
+  void onChangeTaskType(TaskType type) {
+    state = state.copyWith(taskType: type);
+  }
+
+  void onClickCreate(BuildContext context) {
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    // 共通のエラーチェック
+    if (state.name.isEmpty || state.firstDay == null) {
+      state = state.copyWith(
+        hasError: true,
+        errorMessage: context.l10n.noRequired,
+      );
+      return;
+    }
+
+    // 繰り返しならスパンもエラーチェック
+    if (state.taskType == TaskType.recurring && state.span == null) {
+      state = state.copyWith(
+        hasError: true,
+        errorMessage: context.l10n.noRequired,
+      );
+      return;
+    }
+
+    if (state.firstDay!.isBeforeDay(DateTime.now())) {
+      state = state.copyWith(
+        hasError: true,
+        errorMessage: context.l10n.cantSelectAfterToday,
+      );
+      return;
+    }
+
+    ref.read(todoProvider.notifier).create(
+      name: state.name,
+      span: state.span,
+      firstDay: state.firstDay!,
+      categoryId: state.category?.id,
+      time: state.time,
+    );
+
+    ref.read(adServiceProvider).showInterstitial();
+
+    Navigator.pop(context);
   }
 }
 
 @freezed
-class NewTaskPageState with _$NewTaskPageState {
+abstract class NewTaskPageState with _$NewTaskPageState {
   const factory NewTaskPageState({
+    required TaskType taskType,
     required String name,
     required int? span,
-    required bool remind,
     @Default(null) Category? category,
     @Default(null) int? time,
     required DateTime? firstDay,
@@ -61,3 +114,5 @@ class NewTaskPageState with _$NewTaskPageState {
     @Default('') errorMessage,
   }) = _NewTaskPageState;
 }
+
+enum TaskType { recurring, single }

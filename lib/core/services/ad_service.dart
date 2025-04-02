@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:logger/logger.dart';
 import 'package:routine_app/core/services/get_env.dart';
+
+final adServiceProvider = Provider((ref) => AdService());
 
 class AdService {
   InterstitialAd? _interstitialAd;

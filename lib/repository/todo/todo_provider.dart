@@ -43,7 +43,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
     _database.update(todo);
     state = [
       for (var s in state)
-        if (s.id == todo.id) todo else s
+        if (s.id == todo.id) todo else s,
     ];
   }
 
@@ -63,7 +63,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
     _database.update(todo);
     state = [
       for (var s in state)
-        if (s.id == todo.id) todo else s
+        if (s.id == todo.id) todo else s,
     ];
   }
 
@@ -79,7 +79,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
     _database.update(newTodo);
     state = [
       for (var s in state)
-        if (s.id == newTodo.id) newTodo else s
+        if (s.id == newTodo.id) newTodo else s,
     ];
   }
 
@@ -93,15 +93,14 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
     _database.update(newTodo);
     state = [
       for (var s in state)
-        if (s.id != todo.id) s
+        if (s.id != todo.id) s,
     ];
   }
 
   Future<void> create({
     required String name,
-    required int span,
+    required int? span,
     required DateTime firstDay,
-    required bool remind,
     int? categoryId,
     int? time,
     List<DateTime>? completeDate,
@@ -111,7 +110,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
     final Todo todo = Todo(
       name: name,
       span: span,
-      remind: remind,
+      remind: true,
       time: time,
       categoryId: categoryId,
       completeDate: completeDate ?? [],
@@ -134,21 +133,25 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
 
   /// 過去のゆるDOを取得
   List<Todo> getTodosFromDate(DateTime date) {
-    List<Todo> list = state
-        .where((todo) => todo.completeDate.any((d) => d.isSameDay(date)))
-        .toList();
+    List<Todo> list =
+        state
+            .where((todo) => todo.completeDate.any((d) => d.isSameDay(date)))
+            .toList();
     list.sort(Todo.compareByTime);
     return list;
   }
 
   /// 今日のゆるDOを取得
   List<Todo> getTodayTodos(DateTime date) {
-    List<Todo> list = state
-        .where((todo) =>
-            todo.expectedDate.isSameDay(date) ||
-            (todo.completeDate.any((d) => d.isSameDay(date)) &&
-                !todo.preExpectedDate.isBeforeDay(date)))
-        .toList();
+    List<Todo> list =
+        state
+            .where(
+              (todo) =>
+                  todo.expectedDate.isSameDay(date) ||
+                  (todo.completeDate.any((d) => d.isSameDay(date)) &&
+                      !todo.preExpectedDate.isBeforeDay(date)),
+            )
+            .toList();
     list.sort(Todo.compareByTime);
     return list;
   }
@@ -162,17 +165,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
 
   /// 未来のゆるDOを取得
   List<Todo> getFutureTodos(DateTime date) {
-    final today = DateTime.now();
-    List<Todo> list = state
-        .where((todo) =>
-            todo.expectedDate != null && // 実施予定日が設定されている
-            (todo.expectedDate.isAfterDay(today) ||
-                todo.expectedDate.isSameDay(today)) && // 実施予定日が今日以降
-            (todo.expectedDate.isSameDay(date) ||
-                todo.expectedDate.isBeforeDay(date) &&
-                    todo.expectedDate!.dateDiff(date) % todo.span ==
-                        0)) // 当日か、スパン日後
-        .toList();
+    List<Todo> list = state.where((todo) => todo.isExpectedDay(date)).toList();
     list.sort(Todo.compareByTime);
     return list;
   }
@@ -197,51 +190,44 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
         context.showSnackBar(
           SnackBar(content: Text(context.l10n.cantSameYurudo)),
         );
-      } else if (!todo.expectedDate
-          .isSameDay(today.add(Duration(days: pageIndex)))) {
+      } else if (!todo.expectedDate.isSameDay(
+        today.add(Duration(days: pageIndex)),
+      )) {
         context.showSnackBar(
           SnackBar(
             content: Text(
-              context.l10n
-                  .doRecentYurudo(dateFormat.format(todo.expectedDate!)),
+              context.l10n.doRecentYurudo(
+                dateFormat.format(todo.expectedDate!),
+              ),
             ),
           ),
         );
       } else {
         showDialog(
           context: context,
-          builder: (_) => NextSchedule(
-            args: NextScheduleArgs(
-              todo: todo,
-              completeDay: today,
-            ),
-          ),
+          builder:
+              (_) => NextSchedule(
+                args: NextScheduleArgs(todo: todo, completeDay: today),
+              ),
         );
       }
       return;
     } else if (pageIndex < 0) {
       context.showSnackBar(
-        SnackBar(
-          content: Text(context.l10n.cantPretendPerformYurudo),
-        ),
+        SnackBar(content: Text(context.l10n.cantPretendPerformYurudo)),
       );
       return;
     } else if (!todo.isContainComplete(today)) {
       debugPrint('complete!');
       showDialog(
         context: context,
-        builder: (_) => NextSchedule(
-          args: NextScheduleArgs(
-            todo: todo,
-            completeDay: today,
-          ),
-        ),
+        builder:
+            (_) => NextSchedule(
+              args: NextScheduleArgs(todo: todo, completeDay: today),
+            ),
       );
     } else {
-      unComplete(
-        todo: todo,
-        completeDay: today,
-      );
+      unComplete(todo: todo, completeDay: today);
     }
   }
 
@@ -254,7 +240,8 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
   }) {
     if (pageIndex < 0) {
       context.showSnackBar(
-          SnackBar(content: Text(context.l10n.cantPretendPerformYurudo)));
+        SnackBar(content: Text(context.l10n.cantPretendPerformYurudo)),
+      );
       return;
     } else if (todo.expectedDate.isAfterDay(today)) {
       if (_getTodayTodo(today).any((t) => t.id == todo.id)) {
@@ -268,12 +255,10 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
       } else {
         showDialog(
           context: context,
-          builder: (_) => NextSchedule(
-            args: NextScheduleArgs(
-              todo: todo,
-              completeDay: today,
-            ),
-          ),
+          builder:
+              (_) => NextSchedule(
+                args: NextScheduleArgs(todo: todo, completeDay: today),
+              ),
         );
       }
       return;
@@ -281,28 +266,28 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
       debugPrint('complete!');
       showDialog(
         context: context,
-        builder: (_) => NextSchedule(
-          args: NextScheduleArgs(
-            todo: todo,
-            completeDay: today,
-          ),
-        ),
+        builder:
+            (_) => NextSchedule(
+              args: NextScheduleArgs(todo: todo, completeDay: today),
+            ),
       );
     } else {
-      unComplete(
-        todo: todo,
-        completeDay: today,
-      );
+      unComplete(todo: todo, completeDay: today);
     }
   }
 
   /// 今日のタスクと実施が遅れているタスク
   List<Todo> _getTodayTodo(DateTime today) {
-    return state
-        .where((todo) =>
-            todo.expectedDate != null &&
-            !today.isBeforeDay(todo.expectedDate!) &&
-            todo.expectedDate!.dateDiff(today) % todo.span == 0)
-        .toList();
+    return state.where((todo) {
+      if (todo.expectedDate == null) return false;
+
+      if (today.isBeforeDay(todo.expectedDate!)) return false;
+
+      if (todo.span == null) return false;
+
+      if (todo.expectedDate!.dateDiff(today) % todo.span! == 0) return true;
+
+      return false;
+    }).toList();
   }
 }

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,140 +10,135 @@ part of 'time_dialog_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$TimeDialogState {
-  /// 選んでいる時間
-  int get time => throw _privateConstructorUsedError;
 
-  /// Create a copy of TimeDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TimeDialogStateCopyWith<TimeDialogState> get copyWith =>
-      throw _privateConstructorUsedError;
+/// 選んでいる時間
+ int get time;
+/// Create a copy of TimeDialogState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TimeDialogStateCopyWith<TimeDialogState> get copyWith => _$TimeDialogStateCopyWithImpl<TimeDialogState>(this as TimeDialogState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TimeDialogState&&(identical(other.time, time) || other.time == time));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,time);
+
+@override
+String toString() {
+  return 'TimeDialogState(time: $time)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TimeDialogStateCopyWith<$Res> {
-  factory $TimeDialogStateCopyWith(
-          TimeDialogState value, $Res Function(TimeDialogState) then) =
-      _$TimeDialogStateCopyWithImpl<$Res, TimeDialogState>;
-  @useResult
-  $Res call({int time});
-}
+abstract mixin class $TimeDialogStateCopyWith<$Res>  {
+  factory $TimeDialogStateCopyWith(TimeDialogState value, $Res Function(TimeDialogState) _then) = _$TimeDialogStateCopyWithImpl;
+@useResult
+$Res call({
+ int time
+});
 
+
+
+
+}
 /// @nodoc
-class _$TimeDialogStateCopyWithImpl<$Res, $Val extends TimeDialogState>
+class _$TimeDialogStateCopyWithImpl<$Res>
     implements $TimeDialogStateCopyWith<$Res> {
-  _$TimeDialogStateCopyWithImpl(this._value, this._then);
+  _$TimeDialogStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TimeDialogState _self;
+  final $Res Function(TimeDialogState) _then;
 
-  /// Create a copy of TimeDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? time = null,
-  }) {
-    return _then(_value.copyWith(
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
+/// Create a copy of TimeDialogState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? time = null,}) {
+  return _then(_self.copyWith(
+time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-abstract class _$$TimeDialogStateImplCopyWith<$Res>
-    implements $TimeDialogStateCopyWith<$Res> {
-  factory _$$TimeDialogStateImplCopyWith(_$TimeDialogStateImpl value,
-          $Res Function(_$TimeDialogStateImpl) then) =
-      __$$TimeDialogStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int time});
 }
 
-/// @nodoc
-class __$$TimeDialogStateImplCopyWithImpl<$Res>
-    extends _$TimeDialogStateCopyWithImpl<$Res, _$TimeDialogStateImpl>
-    implements _$$TimeDialogStateImplCopyWith<$Res> {
-  __$$TimeDialogStateImplCopyWithImpl(
-      _$TimeDialogStateImpl _value, $Res Function(_$TimeDialogStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TimeDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? time = null,
-  }) {
-    return _then(_$TimeDialogStateImpl(
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$TimeDialogStateImpl implements _TimeDialogState {
-  const _$TimeDialogStateImpl({this.time = 5});
 
-  /// 選んでいる時間
-  @override
-  @JsonKey()
-  final int time;
+class _TimeDialogState implements TimeDialogState {
+  const _TimeDialogState({this.time = 5});
+  
 
-  @override
-  String toString() {
-    return 'TimeDialogState(time: $time)';
-  }
+/// 選んでいる時間
+@override@JsonKey() final  int time;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TimeDialogStateImpl &&
-            (identical(other.time, time) || other.time == time));
-  }
+/// Create a copy of TimeDialogState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TimeDialogStateCopyWith<_TimeDialogState> get copyWith => __$TimeDialogStateCopyWithImpl<_TimeDialogState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, time);
 
-  /// Create a copy of TimeDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TimeDialogStateImplCopyWith<_$TimeDialogStateImpl> get copyWith =>
-      __$$TimeDialogStateImplCopyWithImpl<_$TimeDialogStateImpl>(
-          this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TimeDialogState&&(identical(other.time, time) || other.time == time));
 }
 
-abstract class _TimeDialogState implements TimeDialogState {
-  const factory _TimeDialogState({final int time}) = _$TimeDialogStateImpl;
 
-  /// 選んでいる時間
-  @override
-  int get time;
+@override
+int get hashCode => Object.hash(runtimeType,time);
 
-  /// Create a copy of TimeDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TimeDialogStateImplCopyWith<_$TimeDialogStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'TimeDialogState(time: $time)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TimeDialogStateCopyWith<$Res> implements $TimeDialogStateCopyWith<$Res> {
+  factory _$TimeDialogStateCopyWith(_TimeDialogState value, $Res Function(_TimeDialogState) _then) = __$TimeDialogStateCopyWithImpl;
+@override @useResult
+$Res call({
+ int time
+});
+
+
+
+
+}
+/// @nodoc
+class __$TimeDialogStateCopyWithImpl<$Res>
+    implements _$TimeDialogStateCopyWith<$Res> {
+  __$TimeDialogStateCopyWithImpl(this._self, this._then);
+
+  final _TimeDialogState _self;
+  final $Res Function(_TimeDialogState) _then;
+
+/// Create a copy of TimeDialogState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? time = null,}) {
+  return _then(_TimeDialogState(
+time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+// dart format on

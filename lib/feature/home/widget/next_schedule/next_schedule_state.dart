@@ -17,7 +17,7 @@ class NextScheduleStateNotifier extends StateNotifier<NextScheduleState> {
           NextScheduleState(
             displayMonth: args.completeDay,
             selectDay: args.completeDay.add(
-              Duration(days: args.todo.span),
+              Duration(days: args.todo.span ?? 1),
             ),
             completeDay: DateTime.now(),
           ),
@@ -56,7 +56,7 @@ class NextScheduleStateNotifier extends StateNotifier<NextScheduleState> {
 }
 
 @freezed
-class NextScheduleArgs with _$NextScheduleArgs {
+abstract class NextScheduleArgs with _$NextScheduleArgs {
   const factory NextScheduleArgs({
     required Todo todo,
     required DateTime completeDay,
@@ -64,7 +64,7 @@ class NextScheduleArgs with _$NextScheduleArgs {
 }
 
 @freezed
-class NextScheduleState with _$NextScheduleState {
+abstract class NextScheduleState with _$NextScheduleState {
   const factory NextScheduleState({
     required DateTime displayMonth,
     required DateTime selectDay,

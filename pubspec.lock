@@ -454,7 +454,7 @@ packages:
     source: hosted
     version: "3.0.3"
   freezed_annotation:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: freezed_annotation
       sha256: c87ff004c8aa6af2d531668b46a4ea379f7191dc6dfa066acd53d506da6e044b

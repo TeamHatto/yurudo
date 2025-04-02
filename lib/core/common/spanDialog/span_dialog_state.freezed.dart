@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,165 +10,140 @@ part of 'span_dialog_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$SpanDialogState {
-  /// 選んでいる日にち
-  int get span => throw _privateConstructorUsedError;
 
-  /// 選んでいるスパンの種類
-  SpanType get spanType => throw _privateConstructorUsedError;
+/// 選んでいる日にち
+ int get span;/// 選んでいるスパンの種類
+ SpanType get spanType;
+/// Create a copy of SpanDialogState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpanDialogStateCopyWith<SpanDialogState> get copyWith => _$SpanDialogStateCopyWithImpl<SpanDialogState>(this as SpanDialogState, _$identity);
 
-  /// Create a copy of SpanDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SpanDialogStateCopyWith<SpanDialogState> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpanDialogState&&(identical(other.span, span) || other.span == span)&&(identical(other.spanType, spanType) || other.spanType == spanType));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,span,spanType);
+
+@override
+String toString() {
+  return 'SpanDialogState(span: $span, spanType: $spanType)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SpanDialogStateCopyWith<$Res> {
-  factory $SpanDialogStateCopyWith(
-          SpanDialogState value, $Res Function(SpanDialogState) then) =
-      _$SpanDialogStateCopyWithImpl<$Res, SpanDialogState>;
-  @useResult
-  $Res call({int span, SpanType spanType});
-}
+abstract mixin class $SpanDialogStateCopyWith<$Res>  {
+  factory $SpanDialogStateCopyWith(SpanDialogState value, $Res Function(SpanDialogState) _then) = _$SpanDialogStateCopyWithImpl;
+@useResult
+$Res call({
+ int span, SpanType spanType
+});
 
+
+
+
+}
 /// @nodoc
-class _$SpanDialogStateCopyWithImpl<$Res, $Val extends SpanDialogState>
+class _$SpanDialogStateCopyWithImpl<$Res>
     implements $SpanDialogStateCopyWith<$Res> {
-  _$SpanDialogStateCopyWithImpl(this._value, this._then);
+  _$SpanDialogStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SpanDialogState _self;
+  final $Res Function(SpanDialogState) _then;
 
-  /// Create a copy of SpanDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? span = null,
-    Object? spanType = null,
-  }) {
-    return _then(_value.copyWith(
-      span: null == span
-          ? _value.span
-          : span // ignore: cast_nullable_to_non_nullable
-              as int,
-      spanType: null == spanType
-          ? _value.spanType
-          : spanType // ignore: cast_nullable_to_non_nullable
-              as SpanType,
-    ) as $Val);
-  }
+/// Create a copy of SpanDialogState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? span = null,Object? spanType = null,}) {
+  return _then(_self.copyWith(
+span: null == span ? _self.span : span // ignore: cast_nullable_to_non_nullable
+as int,spanType: null == spanType ? _self.spanType : spanType // ignore: cast_nullable_to_non_nullable
+as SpanType,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SpanDialogStateImplCopyWith<$Res>
-    implements $SpanDialogStateCopyWith<$Res> {
-  factory _$$SpanDialogStateImplCopyWith(_$SpanDialogStateImpl value,
-          $Res Function(_$SpanDialogStateImpl) then) =
-      __$$SpanDialogStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int span, SpanType spanType});
 }
 
-/// @nodoc
-class __$$SpanDialogStateImplCopyWithImpl<$Res>
-    extends _$SpanDialogStateCopyWithImpl<$Res, _$SpanDialogStateImpl>
-    implements _$$SpanDialogStateImplCopyWith<$Res> {
-  __$$SpanDialogStateImplCopyWithImpl(
-      _$SpanDialogStateImpl _value, $Res Function(_$SpanDialogStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SpanDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? span = null,
-    Object? spanType = null,
-  }) {
-    return _then(_$SpanDialogStateImpl(
-      span: null == span
-          ? _value.span
-          : span // ignore: cast_nullable_to_non_nullable
-              as int,
-      spanType: null == spanType
-          ? _value.spanType
-          : spanType // ignore: cast_nullable_to_non_nullable
-              as SpanType,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$SpanDialogStateImpl implements _SpanDialogState {
-  const _$SpanDialogStateImpl({this.span = 1, this.spanType = SpanType.day});
 
-  /// 選んでいる日にち
-  @override
-  @JsonKey()
-  final int span;
+class _SpanDialogState implements SpanDialogState {
+  const _SpanDialogState({this.span = 1, this.spanType = SpanType.day});
+  
 
-  /// 選んでいるスパンの種類
-  @override
-  @JsonKey()
-  final SpanType spanType;
+/// 選んでいる日にち
+@override@JsonKey() final  int span;
+/// 選んでいるスパンの種類
+@override@JsonKey() final  SpanType spanType;
 
-  @override
-  String toString() {
-    return 'SpanDialogState(span: $span, spanType: $spanType)';
-  }
+/// Create a copy of SpanDialogState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SpanDialogStateCopyWith<_SpanDialogState> get copyWith => __$SpanDialogStateCopyWithImpl<_SpanDialogState>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SpanDialogStateImpl &&
-            (identical(other.span, span) || other.span == span) &&
-            (identical(other.spanType, spanType) ||
-                other.spanType == spanType));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, span, spanType);
 
-  /// Create a copy of SpanDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SpanDialogStateImplCopyWith<_$SpanDialogStateImpl> get copyWith =>
-      __$$SpanDialogStateImplCopyWithImpl<_$SpanDialogStateImpl>(
-          this, _$identity);
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpanDialogState&&(identical(other.span, span) || other.span == span)&&(identical(other.spanType, spanType) || other.spanType == spanType));
 }
 
-abstract class _SpanDialogState implements SpanDialogState {
-  const factory _SpanDialogState({final int span, final SpanType spanType}) =
-      _$SpanDialogStateImpl;
 
-  /// 選んでいる日にち
-  @override
-  int get span;
+@override
+int get hashCode => Object.hash(runtimeType,span,spanType);
 
-  /// 選んでいるスパンの種類
-  @override
-  SpanType get spanType;
-
-  /// Create a copy of SpanDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SpanDialogStateImplCopyWith<_$SpanDialogStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'SpanDialogState(span: $span, spanType: $spanType)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SpanDialogStateCopyWith<$Res> implements $SpanDialogStateCopyWith<$Res> {
+  factory _$SpanDialogStateCopyWith(_SpanDialogState value, $Res Function(_SpanDialogState) _then) = __$SpanDialogStateCopyWithImpl;
+@override @useResult
+$Res call({
+ int span, SpanType spanType
+});
+
+
+
+
+}
+/// @nodoc
+class __$SpanDialogStateCopyWithImpl<$Res>
+    implements _$SpanDialogStateCopyWith<$Res> {
+  __$SpanDialogStateCopyWithImpl(this._self, this._then);
+
+  final _SpanDialogState _self;
+  final $Res Function(_SpanDialogState) _then;
+
+/// Create a copy of SpanDialogState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? span = null,Object? spanType = null,}) {
+  return _then(_SpanDialogState(
+span: null == span ? _self.span : span // ignore: cast_nullable_to_non_nullable
+as int,spanType: null == spanType ? _self.spanType : spanType // ignore: cast_nullable_to_non_nullable
+as SpanType,
+  ));
+}
+
+
+}
+
+// dart format on

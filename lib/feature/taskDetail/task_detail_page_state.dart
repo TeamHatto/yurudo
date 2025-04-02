@@ -57,10 +57,10 @@ class TaskDetailPageStateNotifier extends StateNotifier<TaskDetailPageState> {
 }
 
 @freezed
-class TaskDetailPageState with _$TaskDetailPageState {
+abstract class TaskDetailPageState with _$TaskDetailPageState {
   const factory TaskDetailPageState({
     required String title,
-    required int span,
+    required int? span,
     required bool remind,
     required Category? category,
     required int? time,
@@ -69,7 +69,7 @@ class TaskDetailPageState with _$TaskDetailPageState {
 }
 
 @freezed
-class TaskDetailPageArgs with _$TaskDetailPageArgs {
+abstract class TaskDetailPageArgs with _$TaskDetailPageArgs {
   const factory TaskDetailPageArgs({
     required Todo todo,
     required bool isCompleted,

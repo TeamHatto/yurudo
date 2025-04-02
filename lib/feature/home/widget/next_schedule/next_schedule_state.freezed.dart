@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,376 +10,275 @@ part of 'next_schedule_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$NextScheduleArgs {
-  Todo get todo => throw _privateConstructorUsedError;
-  DateTime get completeDay => throw _privateConstructorUsedError;
 
-  /// Create a copy of NextScheduleArgs
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $NextScheduleArgsCopyWith<NextScheduleArgs> get copyWith =>
-      throw _privateConstructorUsedError;
+ Todo get todo; DateTime get completeDay;
+/// Create a copy of NextScheduleArgs
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NextScheduleArgsCopyWith<NextScheduleArgs> get copyWith => _$NextScheduleArgsCopyWithImpl<NextScheduleArgs>(this as NextScheduleArgs, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NextScheduleArgs&&(identical(other.todo, todo) || other.todo == todo)&&(identical(other.completeDay, completeDay) || other.completeDay == completeDay));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,todo,completeDay);
+
+@override
+String toString() {
+  return 'NextScheduleArgs(todo: $todo, completeDay: $completeDay)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $NextScheduleArgsCopyWith<$Res> {
-  factory $NextScheduleArgsCopyWith(
-          NextScheduleArgs value, $Res Function(NextScheduleArgs) then) =
-      _$NextScheduleArgsCopyWithImpl<$Res, NextScheduleArgs>;
-  @useResult
-  $Res call({Todo todo, DateTime completeDay});
-}
+abstract mixin class $NextScheduleArgsCopyWith<$Res>  {
+  factory $NextScheduleArgsCopyWith(NextScheduleArgs value, $Res Function(NextScheduleArgs) _then) = _$NextScheduleArgsCopyWithImpl;
+@useResult
+$Res call({
+ Todo todo, DateTime completeDay
+});
 
+
+
+
+}
 /// @nodoc
-class _$NextScheduleArgsCopyWithImpl<$Res, $Val extends NextScheduleArgs>
+class _$NextScheduleArgsCopyWithImpl<$Res>
     implements $NextScheduleArgsCopyWith<$Res> {
-  _$NextScheduleArgsCopyWithImpl(this._value, this._then);
+  _$NextScheduleArgsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final NextScheduleArgs _self;
+  final $Res Function(NextScheduleArgs) _then;
 
-  /// Create a copy of NextScheduleArgs
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? todo = null,
-    Object? completeDay = null,
-  }) {
-    return _then(_value.copyWith(
-      todo: null == todo
-          ? _value.todo
-          : todo // ignore: cast_nullable_to_non_nullable
-              as Todo,
-      completeDay: null == completeDay
-          ? _value.completeDay
-          : completeDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
-  }
+/// Create a copy of NextScheduleArgs
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? todo = null,Object? completeDay = null,}) {
+  return _then(_self.copyWith(
+todo: null == todo ? _self.todo : todo // ignore: cast_nullable_to_non_nullable
+as Todo,completeDay: null == completeDay ? _self.completeDay : completeDay // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
 }
 
-/// @nodoc
-abstract class _$$NextScheduleArgsImplCopyWith<$Res>
-    implements $NextScheduleArgsCopyWith<$Res> {
-  factory _$$NextScheduleArgsImplCopyWith(_$NextScheduleArgsImpl value,
-          $Res Function(_$NextScheduleArgsImpl) then) =
-      __$$NextScheduleArgsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Todo todo, DateTime completeDay});
 }
 
-/// @nodoc
-class __$$NextScheduleArgsImplCopyWithImpl<$Res>
-    extends _$NextScheduleArgsCopyWithImpl<$Res, _$NextScheduleArgsImpl>
-    implements _$$NextScheduleArgsImplCopyWith<$Res> {
-  __$$NextScheduleArgsImplCopyWithImpl(_$NextScheduleArgsImpl _value,
-      $Res Function(_$NextScheduleArgsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of NextScheduleArgs
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? todo = null,
-    Object? completeDay = null,
-  }) {
-    return _then(_$NextScheduleArgsImpl(
-      todo: null == todo
-          ? _value.todo
-          : todo // ignore: cast_nullable_to_non_nullable
-              as Todo,
-      completeDay: null == completeDay
-          ? _value.completeDay
-          : completeDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$NextScheduleArgsImpl implements _NextScheduleArgs {
-  const _$NextScheduleArgsImpl({required this.todo, required this.completeDay});
 
-  @override
-  final Todo todo;
-  @override
-  final DateTime completeDay;
+class _NextScheduleArgs implements NextScheduleArgs {
+  const _NextScheduleArgs({required this.todo, required this.completeDay});
+  
 
-  @override
-  String toString() {
-    return 'NextScheduleArgs(todo: $todo, completeDay: $completeDay)';
-  }
+@override final  Todo todo;
+@override final  DateTime completeDay;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NextScheduleArgsImpl &&
-            (identical(other.todo, todo) || other.todo == todo) &&
-            (identical(other.completeDay, completeDay) ||
-                other.completeDay == completeDay));
-  }
+/// Create a copy of NextScheduleArgs
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NextScheduleArgsCopyWith<_NextScheduleArgs> get copyWith => __$NextScheduleArgsCopyWithImpl<_NextScheduleArgs>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, todo, completeDay);
 
-  /// Create a copy of NextScheduleArgs
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NextScheduleArgsImplCopyWith<_$NextScheduleArgsImpl> get copyWith =>
-      __$$NextScheduleArgsImplCopyWithImpl<_$NextScheduleArgsImpl>(
-          this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NextScheduleArgs&&(identical(other.todo, todo) || other.todo == todo)&&(identical(other.completeDay, completeDay) || other.completeDay == completeDay));
 }
 
-abstract class _NextScheduleArgs implements NextScheduleArgs {
-  const factory _NextScheduleArgs(
-      {required final Todo todo,
-      required final DateTime completeDay}) = _$NextScheduleArgsImpl;
 
-  @override
-  Todo get todo;
-  @override
-  DateTime get completeDay;
+@override
+int get hashCode => Object.hash(runtimeType,todo,completeDay);
 
-  /// Create a copy of NextScheduleArgs
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NextScheduleArgsImplCopyWith<_$NextScheduleArgsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'NextScheduleArgs(todo: $todo, completeDay: $completeDay)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NextScheduleArgsCopyWith<$Res> implements $NextScheduleArgsCopyWith<$Res> {
+  factory _$NextScheduleArgsCopyWith(_NextScheduleArgs value, $Res Function(_NextScheduleArgs) _then) = __$NextScheduleArgsCopyWithImpl;
+@override @useResult
+$Res call({
+ Todo todo, DateTime completeDay
+});
+
+
+
+
+}
+/// @nodoc
+class __$NextScheduleArgsCopyWithImpl<$Res>
+    implements _$NextScheduleArgsCopyWith<$Res> {
+  __$NextScheduleArgsCopyWithImpl(this._self, this._then);
+
+  final _NextScheduleArgs _self;
+  final $Res Function(_NextScheduleArgs) _then;
+
+/// Create a copy of NextScheduleArgs
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? todo = null,Object? completeDay = null,}) {
+  return _then(_NextScheduleArgs(
+todo: null == todo ? _self.todo : todo // ignore: cast_nullable_to_non_nullable
+as Todo,completeDay: null == completeDay ? _self.completeDay : completeDay // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$NextScheduleState {
-  DateTime get displayMonth => throw _privateConstructorUsedError;
-  DateTime get selectDay => throw _privateConstructorUsedError;
-  DateTime get completeDay => throw _privateConstructorUsedError;
-  bool get hasError => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
 
-  /// Create a copy of NextScheduleState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $NextScheduleStateCopyWith<NextScheduleState> get copyWith =>
-      throw _privateConstructorUsedError;
+ DateTime get displayMonth; DateTime get selectDay; DateTime get completeDay; bool get hasError; String get errorMessage;
+/// Create a copy of NextScheduleState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NextScheduleStateCopyWith<NextScheduleState> get copyWith => _$NextScheduleStateCopyWithImpl<NextScheduleState>(this as NextScheduleState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NextScheduleState&&(identical(other.displayMonth, displayMonth) || other.displayMonth == displayMonth)&&(identical(other.selectDay, selectDay) || other.selectDay == selectDay)&&(identical(other.completeDay, completeDay) || other.completeDay == completeDay)&&(identical(other.hasError, hasError) || other.hasError == hasError)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,displayMonth,selectDay,completeDay,hasError,errorMessage);
+
+@override
+String toString() {
+  return 'NextScheduleState(displayMonth: $displayMonth, selectDay: $selectDay, completeDay: $completeDay, hasError: $hasError, errorMessage: $errorMessage)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $NextScheduleStateCopyWith<$Res> {
-  factory $NextScheduleStateCopyWith(
-          NextScheduleState value, $Res Function(NextScheduleState) then) =
-      _$NextScheduleStateCopyWithImpl<$Res, NextScheduleState>;
-  @useResult
-  $Res call(
-      {DateTime displayMonth,
-      DateTime selectDay,
-      DateTime completeDay,
-      bool hasError,
-      String errorMessage});
-}
+abstract mixin class $NextScheduleStateCopyWith<$Res>  {
+  factory $NextScheduleStateCopyWith(NextScheduleState value, $Res Function(NextScheduleState) _then) = _$NextScheduleStateCopyWithImpl;
+@useResult
+$Res call({
+ DateTime displayMonth, DateTime selectDay, DateTime completeDay, bool hasError, String errorMessage
+});
 
+
+
+
+}
 /// @nodoc
-class _$NextScheduleStateCopyWithImpl<$Res, $Val extends NextScheduleState>
+class _$NextScheduleStateCopyWithImpl<$Res>
     implements $NextScheduleStateCopyWith<$Res> {
-  _$NextScheduleStateCopyWithImpl(this._value, this._then);
+  _$NextScheduleStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final NextScheduleState _self;
+  final $Res Function(NextScheduleState) _then;
 
-  /// Create a copy of NextScheduleState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? displayMonth = null,
-    Object? selectDay = null,
-    Object? completeDay = null,
-    Object? hasError = null,
-    Object? errorMessage = null,
-  }) {
-    return _then(_value.copyWith(
-      displayMonth: null == displayMonth
-          ? _value.displayMonth
-          : displayMonth // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      selectDay: null == selectDay
-          ? _value.selectDay
-          : selectDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      completeDay: null == completeDay
-          ? _value.completeDay
-          : completeDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      hasError: null == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of NextScheduleState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? displayMonth = null,Object? selectDay = null,Object? completeDay = null,Object? hasError = null,Object? errorMessage = null,}) {
+  return _then(_self.copyWith(
+displayMonth: null == displayMonth ? _self.displayMonth : displayMonth // ignore: cast_nullable_to_non_nullable
+as DateTime,selectDay: null == selectDay ? _self.selectDay : selectDay // ignore: cast_nullable_to_non_nullable
+as DateTime,completeDay: null == completeDay ? _self.completeDay : completeDay // ignore: cast_nullable_to_non_nullable
+as DateTime,hasError: null == hasError ? _self.hasError : hasError // ignore: cast_nullable_to_non_nullable
+as bool,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$NextScheduleStateImplCopyWith<$Res>
-    implements $NextScheduleStateCopyWith<$Res> {
-  factory _$$NextScheduleStateImplCopyWith(_$NextScheduleStateImpl value,
-          $Res Function(_$NextScheduleStateImpl) then) =
-      __$$NextScheduleStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {DateTime displayMonth,
-      DateTime selectDay,
-      DateTime completeDay,
-      bool hasError,
-      String errorMessage});
 }
 
-/// @nodoc
-class __$$NextScheduleStateImplCopyWithImpl<$Res>
-    extends _$NextScheduleStateCopyWithImpl<$Res, _$NextScheduleStateImpl>
-    implements _$$NextScheduleStateImplCopyWith<$Res> {
-  __$$NextScheduleStateImplCopyWithImpl(_$NextScheduleStateImpl _value,
-      $Res Function(_$NextScheduleStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of NextScheduleState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? displayMonth = null,
-    Object? selectDay = null,
-    Object? completeDay = null,
-    Object? hasError = null,
-    Object? errorMessage = null,
-  }) {
-    return _then(_$NextScheduleStateImpl(
-      displayMonth: null == displayMonth
-          ? _value.displayMonth
-          : displayMonth // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      selectDay: null == selectDay
-          ? _value.selectDay
-          : selectDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      completeDay: null == completeDay
-          ? _value.completeDay
-          : completeDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      hasError: null == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$NextScheduleStateImpl implements _NextScheduleState {
-  const _$NextScheduleStateImpl(
-      {required this.displayMonth,
-      required this.selectDay,
-      required this.completeDay,
-      this.hasError = false,
-      this.errorMessage = ''});
 
-  @override
-  final DateTime displayMonth;
-  @override
-  final DateTime selectDay;
-  @override
-  final DateTime completeDay;
-  @override
-  @JsonKey()
-  final bool hasError;
-  @override
-  @JsonKey()
-  final String errorMessage;
+class _NextScheduleState implements NextScheduleState {
+  const _NextScheduleState({required this.displayMonth, required this.selectDay, required this.completeDay, this.hasError = false, this.errorMessage = ''});
+  
 
-  @override
-  String toString() {
-    return 'NextScheduleState(displayMonth: $displayMonth, selectDay: $selectDay, completeDay: $completeDay, hasError: $hasError, errorMessage: $errorMessage)';
-  }
+@override final  DateTime displayMonth;
+@override final  DateTime selectDay;
+@override final  DateTime completeDay;
+@override@JsonKey() final  bool hasError;
+@override@JsonKey() final  String errorMessage;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NextScheduleStateImpl &&
-            (identical(other.displayMonth, displayMonth) ||
-                other.displayMonth == displayMonth) &&
-            (identical(other.selectDay, selectDay) ||
-                other.selectDay == selectDay) &&
-            (identical(other.completeDay, completeDay) ||
-                other.completeDay == completeDay) &&
-            (identical(other.hasError, hasError) ||
-                other.hasError == hasError) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
+/// Create a copy of NextScheduleState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NextScheduleStateCopyWith<_NextScheduleState> get copyWith => __$NextScheduleStateCopyWithImpl<_NextScheduleState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, displayMonth, selectDay,
-      completeDay, hasError, errorMessage);
 
-  /// Create a copy of NextScheduleState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NextScheduleStateImplCopyWith<_$NextScheduleStateImpl> get copyWith =>
-      __$$NextScheduleStateImplCopyWithImpl<_$NextScheduleStateImpl>(
-          this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NextScheduleState&&(identical(other.displayMonth, displayMonth) || other.displayMonth == displayMonth)&&(identical(other.selectDay, selectDay) || other.selectDay == selectDay)&&(identical(other.completeDay, completeDay) || other.completeDay == completeDay)&&(identical(other.hasError, hasError) || other.hasError == hasError)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
-abstract class _NextScheduleState implements NextScheduleState {
-  const factory _NextScheduleState(
-      {required final DateTime displayMonth,
-      required final DateTime selectDay,
-      required final DateTime completeDay,
-      final bool hasError,
-      final String errorMessage}) = _$NextScheduleStateImpl;
 
-  @override
-  DateTime get displayMonth;
-  @override
-  DateTime get selectDay;
-  @override
-  DateTime get completeDay;
-  @override
-  bool get hasError;
-  @override
-  String get errorMessage;
+@override
+int get hashCode => Object.hash(runtimeType,displayMonth,selectDay,completeDay,hasError,errorMessage);
 
-  /// Create a copy of NextScheduleState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NextScheduleStateImplCopyWith<_$NextScheduleStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'NextScheduleState(displayMonth: $displayMonth, selectDay: $selectDay, completeDay: $completeDay, hasError: $hasError, errorMessage: $errorMessage)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NextScheduleStateCopyWith<$Res> implements $NextScheduleStateCopyWith<$Res> {
+  factory _$NextScheduleStateCopyWith(_NextScheduleState value, $Res Function(_NextScheduleState) _then) = __$NextScheduleStateCopyWithImpl;
+@override @useResult
+$Res call({
+ DateTime displayMonth, DateTime selectDay, DateTime completeDay, bool hasError, String errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class __$NextScheduleStateCopyWithImpl<$Res>
+    implements _$NextScheduleStateCopyWith<$Res> {
+  __$NextScheduleStateCopyWithImpl(this._self, this._then);
+
+  final _NextScheduleState _self;
+  final $Res Function(_NextScheduleState) _then;
+
+/// Create a copy of NextScheduleState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? displayMonth = null,Object? selectDay = null,Object? completeDay = null,Object? hasError = null,Object? errorMessage = null,}) {
+  return _then(_NextScheduleState(
+displayMonth: null == displayMonth ? _self.displayMonth : displayMonth // ignore: cast_nullable_to_non_nullable
+as DateTime,selectDay: null == selectDay ? _self.selectDay : selectDay // ignore: cast_nullable_to_non_nullable
+as DateTime,completeDay: null == completeDay ? _self.completeDay : completeDay // ignore: cast_nullable_to_non_nullable
+as DateTime,hasError: null == hasError ? _self.hasError : hasError // ignore: cast_nullable_to_non_nullable
+as bool,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

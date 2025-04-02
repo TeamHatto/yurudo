@@ -77,7 +77,7 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
       for (var i = 0; i < 7; i++) {
         DateTime dayInWeek = pageWeekStart.add(Duration(days: i));
         if (!dayInWeek.isBeforeDay(todo.expectedDate!) &&
-            todo.expectedDate!.dateDiff(dayInWeek) % todo.span == 0) {
+            todo.expectedDate!.dateDiff(dayInWeek) % todo.span! == 0) {
           todoList.add(todo.copyWith(expectedDate: () => dayInWeek));
         }
       }

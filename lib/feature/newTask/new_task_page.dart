@@ -11,11 +11,8 @@ import 'package:routine_app/core/design/app_style.dart';
 import 'package:routine_app/core/design/app_text_field.dart';
 import 'package:routine_app/core/navigation/router.dart';
 import 'package:routine_app/core/services/ad_service.dart';
-import 'package:routine_app/core/services/notification_service.dart';
 import 'package:routine_app/core/utils/contextEx.dart';
-import 'package:routine_app/core/utils/date.dart';
 import 'package:routine_app/core/utils/int_ex.dart';
-import 'package:routine_app/repository/todo/todo_provider.dart';
 
 import 'new_task_page_state.dart';
 
@@ -41,12 +38,14 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
   void initState() {
     super.initState();
     ad = AdService();
-    ad.adLoad(onFinish: () {
-      Navigator.popUntil(
-        context,
-        (route) => route.settings.name == AppRouter.home,
-      );
-    });
+    ad.adLoad(
+      onFinish: () {
+        Navigator.popUntil(
+          context,
+          (route) => route.settings.name == AppRouter.home,
+        );
+      },
+    );
   }
 
   @override
@@ -62,7 +61,6 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
   @override
   Widget build(BuildContext context) {
     final NewTaskPageState state = ref.watch(provider);
-    final deviceWidth = MediaQuery.of(context).size.width;
 
     if (!_isInitialized) {
       titleList = [
@@ -105,40 +103,11 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
             backgroundColor: const WidgetStatePropertyAll(AppColor.primary),
           ),
           onPressed: () async {
-            final state = ref.watch(provider);
-            FocusManager.instance.primaryFocus?.unfocus();
-            if (state.name.isEmpty ||
-                state.span == null ||
-                state.firstDay == null) {
-              ref.read(provider.notifier).setHasError(true, context.l10n.noRequired);
-              return;
-            }
-            if (state.firstDay!.isBeforeDay(DateTime.now())) {
-              ref
-                  .read(provider.notifier)
-                  .setHasError(true, context.l10n.cantSelectAfterToday);
-              return;
-            }
-            if (state.remind) {
-              ref.watch(notificationServiceProvider).requestPermissions();
-            }
-            await ref.read(todoProvider.notifier).create(
-              name: state.name,
-              span: state.span!,
-              firstDay: state.firstDay!,
-              remind: state.remind,
-              categoryId: state.category?.id,
-              time: state.time,
-            );
-            ad.showInterstitial();
-            if (!mounted) return;
-            Navigator.pop(context);
+            ref.read(provider.notifier).onClickCreate(context);
           },
           child: Text(
             context.l10n.create,
-            style: context.textTheme.bodyLarge!.copyWith(
-              color: Colors.white,
-            ),
+            style: context.textTheme.bodyLarge!.copyWith(color: Colors.white),
           ),
         ),
       ),
@@ -149,22 +118,28 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SegmentedButton(
-                    segments: const [
-                      ButtonSegment(value: 0, label: Text("繰り返し")),
-                      ButtonSegment(value: 1, label: Text("単発")),
-                    ],
-                    selected: const {0}
+                SegmentedButton<TaskType>(
+                  onSelectionChanged: (type) {
+                    ref.read(provider.notifier).onChangeTaskType(type.first);
+                  },
+                  segments: const [
+                    ButtonSegment(
+                      value: TaskType.recurring,
+                      label: Text("繰り返し"),
+                    ),
+                    ButtonSegment(value: TaskType.single, label: Text("単発")),
+                  ],
+                  selected: {ref.watch(provider).taskType},
+                  expandedInsets: const EdgeInsets.symmetric(vertical: 10),
                 ),
+                const SizedBox(height: 38),
                 if (state.hasError)
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: Text(
                       state.errorMessage,
-                      style: const TextStyle(
-                        color: AppColor.emphasis,
-                      ),
+                      style: const TextStyle(color: AppColor.emphasis),
                     ),
                   ),
                 AppTextField(
@@ -177,137 +152,104 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
                   maxLines: null,
                 ),
                 const SizedBox(height: 38),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
                   children: [
-                    SizedBox(
-                      width: deviceWidth / 2 - 20,
-                      child: Column(
-                        children: [
-                          AppTextField(
-                            label: context.l10n.span,
-                            placeholder: context.l10n.select,
-                            isRequired: true,
-                            controller: _spanController,
-                            readonly: true,
-                            onTap: () {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return SpanDialog(
-                                        onConfirm: (number, spanType) {
-                                      int span = number * spanType.term;
-                                      _spanController.text =
-                                          span.toSpanString(context);
-                                      ref.read(provider.notifier).setSpan(span);
-                                    });
-                                  });
-                            },
-                          ),
-                          const SizedBox(height: 38),
-                          CategoryTextField(
-                            category: state.category,
-                            onTap: () {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return CategoryDialog(
-                                    defaultValue: state.category,
-                                    onConfirm: (value) {
-                                      ref
-                                          .read(provider.notifier)
-                                          .setCategory(value);
-                                    },
+                    if (state.taskType == TaskType.recurring)
+                      AppTextField(
+                        label: context.l10n.span,
+                        placeholder: context.l10n.select,
+                        isRequired: true,
+                        controller: _spanController,
+                        readonly: true,
+                        onTap: () {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return SpanDialog(
+                                onConfirm: (number, spanType) {
+                                  int span = number * spanType.term;
+                                  _spanController.text = span.toSpanString(
+                                    context,
                                   );
+                                  ref.read(provider.notifier).setSpan(span);
                                 },
                               );
                             },
-                          ),
-                          const SizedBox(height: 38),
-                          AppTextField(
-                            label: context.l10n.requireTime,
-                            placeholder: context.l10n.select,
-                            controller: _timeController,
-                            readonly: true,
-                            onTap: () {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                              showDialog(
-                                  context: context,
-                                  builder: (context) => TimeDialog(
-                                        onConfirm: (time) {
-                                          _timeController.text = time.toTimeString(context);
+                          );
+                        },
+                      ),
+                    if (state.taskType == TaskType.recurring)
+                      const SizedBox(height: 38),
+                    CategoryTextField(
+                      category: state.category,
+                      onTap: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CategoryDialog(
+                              defaultValue: state.category,
+                              onConfirm: (value) {
+                                ref.read(provider.notifier).setCategory(value);
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 38),
+                    AppTextField(
+                      label: context.l10n.requireTime,
+                      placeholder: context.l10n.select,
+                      controller: _timeController,
+                      readonly: true,
+                      onTap: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => TimeDialog(
+                                onConfirm: (time) {
+                                  _timeController.text = time.toTimeString(
+                                    context,
+                                  );
                                   ref.read(provider.notifier).setTime(time);
                                 },
-                                      ));
-                            },
-                          ),
-                          const SizedBox(height: 38),
-                          AppTextField(
-                            label: context.l10n.firstExpectedDate,
-                            placeholder: context.l10n.select,
-                            isRequired: true,
-                            controller: _dateController,
-                            readonly: true,
-                            onTap: () {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                              showDatePicker(
-                                context: context,
-                                helpText: context.l10n.setExpectedDate,
-                                initialDate: state.firstDay ?? DateTime.now(),
-                                firstDate: DateTime.now(),
-                                lastDate: DateTime.now()
-                                    .add(const Duration(days: 366)),
-                              ).then((date) {
-                                if (date != null) {
-                                  ref.read(provider.notifier).setDate(date);
-                                  _dateController.text = DateFormat.yMd(context.locale.languageCode).format(date);
-                                }
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                              ),
+                        );
+                      },
                     ),
-                    Container(
-                        width: deviceWidth / 2 - 20,
-                        padding: const EdgeInsets.only(top: 25, left: 12),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(8),
-                          onTap: () {
-                            FocusManager.instance.primaryFocus?.unfocus();
-                            ref
-                                .read(provider.notifier)
-                                .setRemind(!state.remind);
-                          },
-                          child: Row(
-                            children: [
-                              Checkbox(
-                                value: state.remind,
-                                activeColor: AppColor.fontColor2,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                onChanged: (value) {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                  ref
-                                      .read(provider.notifier)
-                                      .setRemind(value ?? false);
-                                },
-                              ),
-                              Transform.translate(
-                                offset: const Offset(-7, 0),
-                                child: Text(
-                                  context.l10n.remind,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ],
+                    const SizedBox(height: 38),
+                    AppTextField(
+                      label:
+                          state.taskType == TaskType.recurring
+                              ? context.l10n.firstExpectedDate
+                              : context.l10n.expectedDate,
+                      placeholder: context.l10n.select,
+                      isRequired: true,
+                      controller: _dateController,
+                      readonly: true,
+                      onTap: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        showDatePicker(
+                          context: context,
+                          helpText: context.l10n.setExpectedDate,
+                          initialDate: state.firstDay ?? DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now().add(
+                            const Duration(days: 366),
                           ),
-                        )),
+                        ).then((date) {
+                          if (date != null) {
+                            ref.read(provider.notifier).setDate(date);
+                            _dateController.text = DateFormat.yMd(
+                              context.locale.languageCode,
+                            ).format(date);
+                          }
+                        });
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(height: 60),

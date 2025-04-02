@@ -22,7 +22,7 @@ class CategoryDialogStateNotifier extends StateNotifier<CategoryDialogState> {
 }
 
 @freezed
-class CategoryDialogState with _$CategoryDialogState {
+abstract class CategoryDialogState with _$CategoryDialogState {
   const factory CategoryDialogState({
     /// 選んでいるボタンの数字
     @Default(null) int? selectButtonNum,

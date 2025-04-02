@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,185 +10,145 @@ part of 'category.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$Category {
-  /// カテゴリNo.
-  int get id => throw _privateConstructorUsedError;
 
-  /// カラー
-  Color get color => throw _privateConstructorUsedError;
+/// カテゴリNo.
+ int get id;/// カラー
+ Color get color;/// カテゴリ名
+ String get name;
+/// Create a copy of Category
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CategoryCopyWith<Category> get copyWith => _$CategoryCopyWithImpl<Category>(this as Category, _$identity);
 
-  /// カテゴリ名
-  String get name => throw _privateConstructorUsedError;
 
-  /// Create a copy of Category
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CategoryCopyWith<Category> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Category&&(identical(other.id, id) || other.id == id)&&(identical(other.color, color) || other.color == color)&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,color,name);
+
+@override
+String toString() {
+  return 'Category(id: $id, color: $color, name: $name)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CategoryCopyWith<$Res> {
-  factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
-      _$CategoryCopyWithImpl<$Res, Category>;
-  @useResult
-  $Res call({int id, Color color, String name});
-}
+abstract mixin class $CategoryCopyWith<$Res>  {
+  factory $CategoryCopyWith(Category value, $Res Function(Category) _then) = _$CategoryCopyWithImpl;
+@useResult
+$Res call({
+ int id, Color color, String name
+});
 
+
+
+
+}
 /// @nodoc
-class _$CategoryCopyWithImpl<$Res, $Val extends Category>
+class _$CategoryCopyWithImpl<$Res>
     implements $CategoryCopyWith<$Res> {
-  _$CategoryCopyWithImpl(this._value, this._then);
+  _$CategoryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Category _self;
+  final $Res Function(Category) _then;
 
-  /// Create a copy of Category
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? color = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of Category
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? color = null,Object? name = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$CategoryImplCopyWith<$Res>
-    implements $CategoryCopyWith<$Res> {
-  factory _$$CategoryImplCopyWith(
-          _$CategoryImpl value, $Res Function(_$CategoryImpl) then) =
-      __$$CategoryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int id, Color color, String name});
 }
 
-/// @nodoc
-class __$$CategoryImplCopyWithImpl<$Res>
-    extends _$CategoryCopyWithImpl<$Res, _$CategoryImpl>
-    implements _$$CategoryImplCopyWith<$Res> {
-  __$$CategoryImplCopyWithImpl(
-      _$CategoryImpl _value, $Res Function(_$CategoryImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Category
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? color = null,
-    Object? name = null,
-  }) {
-    return _then(_$CategoryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$CategoryImpl implements _Category {
-  const _$CategoryImpl({required this.id, required this.color, this.name = ''});
 
-  /// カテゴリNo.
-  @override
-  final int id;
+class _Category implements Category {
+  const _Category({required this.id, required this.color, this.name = ''});
+  
 
-  /// カラー
-  @override
-  final Color color;
+/// カテゴリNo.
+@override final  int id;
+/// カラー
+@override final  Color color;
+/// カテゴリ名
+@override@JsonKey() final  String name;
 
-  /// カテゴリ名
-  @override
-  @JsonKey()
-  final String name;
+/// Create a copy of Category
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CategoryCopyWith<_Category> get copyWith => __$CategoryCopyWithImpl<_Category>(this, _$identity);
 
-  @override
-  String toString() {
-    return 'Category(id: $id, color: $color, name: $name)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CategoryImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.name, name) || other.name == name));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, id, color, name);
-
-  /// Create a copy of Category
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
-      __$$CategoryImplCopyWithImpl<_$CategoryImpl>(this, _$identity);
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Category&&(identical(other.id, id) || other.id == id)&&(identical(other.color, color) || other.color == color)&&(identical(other.name, name) || other.name == name));
 }
 
-abstract class _Category implements Category {
-  const factory _Category(
-      {required final int id,
-      required final Color color,
-      final String name}) = _$CategoryImpl;
 
-  /// カテゴリNo.
-  @override
-  int get id;
+@override
+int get hashCode => Object.hash(runtimeType,id,color,name);
 
-  /// カラー
-  @override
-  Color get color;
-
-  /// カテゴリ名
-  @override
-  String get name;
-
-  /// Create a copy of Category
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'Category(id: $id, color: $color, name: $name)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
+  factory _$CategoryCopyWith(_Category value, $Res Function(_Category) _then) = __$CategoryCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, Color color, String name
+});
+
+
+
+
+}
+/// @nodoc
+class __$CategoryCopyWithImpl<$Res>
+    implements _$CategoryCopyWith<$Res> {
+  __$CategoryCopyWithImpl(this._self, this._then);
+
+  final _Category _self;
+  final $Res Function(_Category) _then;
+
+/// Create a copy of Category
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? color = null,Object? name = null,}) {
+  return _then(_Category(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on
