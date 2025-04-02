@@ -28,7 +28,7 @@ jobs:
         # Flutterをセットアップするアクションを使用
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.2'
+          flutter-version: '3.29.2'
 
       - name: Copy Secrets
         shell: bash
@@ -84,7 +84,7 @@ jobs:
         # Flutterをセットアップするアクションを使用
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.2'
+          flutter-version: '3.29.2'
 
       - name: Copy Secrets
         shell: bash
