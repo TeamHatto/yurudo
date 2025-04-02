@@ -125,9 +125,9 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
                   segments: const [
                     ButtonSegment(
                       value: TaskType.recurring,
-                      label: Text("繰り返し"),
+                      label: Text("繰り返し"), // TODO l10n
                     ),
-                    ButtonSegment(value: TaskType.single, label: Text("単発")),
+                    ButtonSegment(value: TaskType.single, label: Text("単発")), // TODO l10n
                   ],
                   selected: {ref.watch(provider).taskType},
                   expandedInsets: const EdgeInsets.symmetric(vertical: 10),

@@ -6,7 +6,8 @@ part 'span_dialog_state.freezed.dart';
 enum SpanType {
   day("day", 1, 6),
   week("week", 7, 5),
-  month("month", 30, 12);
+  month("month", 30, 11),
+  year("year", 365, 10);
 
   final String value;
   final int term;

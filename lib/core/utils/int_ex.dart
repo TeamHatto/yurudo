@@ -10,8 +10,10 @@ extension IntEx on int? {
       return context.l10n.onceEveryDay(this as num);
     } else if (this! < 30) {
       return context.l10n.onceEveryWeek(this! ~/ 7 as num);
-    } else {
+    } else if (this! < 365){
       return context.l10n.onceEveryMonth(this! ~/ 30 as num);
+    } else {
+      return context.l10n.onceEveryYear(this! ~/ 365 as num);
     }
   }
 

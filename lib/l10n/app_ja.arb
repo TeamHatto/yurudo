@@ -157,8 +157,9 @@
   "onceEveryDay": "{date, plural, other {{date}日に1回}}",
   "onceEveryWeek": "{date, plural, other {{date}週に1回}}",
   "onceEveryMonth": "{date, plural, other {{date}か月に1回}}",
+  "onceEveryYear": "{date, plural, other {{date}年に1回}}",
 
-  "spanType": "{type, select, day{日} week{週} month{か月} other{エラー}}",
+  "spanType": "{type, select, day{日} week{週} month{か月} year{年} other{エラー}}",
   "@spanType": {
     "placeholders": {
       "type": {

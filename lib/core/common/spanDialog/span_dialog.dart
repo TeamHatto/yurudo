@@ -6,17 +6,16 @@ import 'package:routine_app/core/utils/contextEx.dart';
 class SpanDialog extends ConsumerWidget {
   final void Function(int num, SpanType type) onConfirm;
 
-  const SpanDialog({
-    super.key,
-    required this.onConfirm,
-  });
+  const SpanDialog({super.key, required this.onConfirm});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(spanDialogStateProvider);
     var notifier = ref.read(spanDialogStateProvider.notifier);
-    List<int> spanTime =
-        List.generate(state.spanType.limit, (index) => index + 1);
+    List<int> spanTime = List.generate(
+      state.spanType.limit,
+      (index) => index + 1,
+    );
 
     return AlertDialog(
       title: Text(
@@ -31,12 +30,15 @@ class SpanDialog extends ConsumerWidget {
             child: DropdownButton<int>(
               value: state.span,
               isExpanded: true,
-              items: spanTime
-                  .map((value) => DropdownMenuItem(
-                        value: value,
-                        child: Text(value.toString()),
-                      ))
-                  .toList(),
+              items:
+                  spanTime
+                      .map(
+                        (value) => DropdownMenuItem(
+                          value: value,
+                          child: Text(value.toString()),
+                        ),
+                      )
+                      .toList(),
               onChanged: (value) {
                 if (value != null) {
                   notifier.onChangeSpan(value);
@@ -49,12 +51,15 @@ class SpanDialog extends ConsumerWidget {
             child: DropdownButton<SpanType>(
               value: state.spanType,
               isExpanded: true,
-              items: SpanType.values
-                  .map((value) => DropdownMenuItem(
-                        value: value,
-                        child: Text(context.l10n.spanType(value.value)),
-                      ))
-                  .toList(),
+              items:
+                  SpanType.values
+                      .map(
+                        (value) => DropdownMenuItem(
+                          value: value,
+                          child: Text(context.l10n.spanType(value.value)),
+                        ),
+                      )
+                      .toList(),
               onChanged: (value) {
                 if (value != null) {
                   notifier.onChangeSpanType(value);

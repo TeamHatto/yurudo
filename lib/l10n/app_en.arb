@@ -191,8 +191,18 @@
       }
     }
   },
+  "onceEveryYear": "{date, plural, =1 {Once a year} other {Once every {date} years}}",
+  "@onceEveryYear": {
+    "description": "スパンの年に1回の表示",
+    "placeholders": {
+      "date": {
+        "description": "N年の部分",
+        "type": "num"
+      }
+    }
+  },
 
-  "spanType": "{type, select, day{Day} week{Week} month{Month} other{Error}}",
+  "spanType": "{type, select, day{Day} week{Week} month{Month} year{Year} other{Error}}",
   "@spanType": {
     "placeholders": {
       "type": {
