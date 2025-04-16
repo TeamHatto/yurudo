@@ -255,5 +255,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "routineTask": "Routine Task",
+  "singleTask": "Single Task"
 }

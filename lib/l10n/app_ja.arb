@@ -212,5 +212,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "routineTask": "繰り返し",
+  "singleTask": "単発"
 }

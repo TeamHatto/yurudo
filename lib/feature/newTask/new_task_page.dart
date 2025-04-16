@@ -123,12 +123,12 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
                   onSelectionChanged: (type) {
                     ref.read(provider.notifier).onChangeTaskType(type.first);
                   },
-                  segments: const [
+                  segments: [
                     ButtonSegment(
                       value: TaskType.recurring,
-                      label: Text("繰り返し"), // TODO l10n
+                      label: Text(context.l10n.routineTask),
                     ),
-                    ButtonSegment(value: TaskType.single, label: Text("単発")), // TODO l10n
+                    ButtonSegment(value: TaskType.single, label: Text(context.l10n.singleTask)),
                   ],
                   selected: {ref.watch(provider).taskType},
                   expandedInsets: const EdgeInsets.symmetric(vertical: 10),
