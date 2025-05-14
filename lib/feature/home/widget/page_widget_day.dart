@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:routine_app/core/design/app_assets.dart';
 import 'package:routine_app/core/design/app_color.dart';
+import 'package:routine_app/core/enums/TaskType.dart';
 import 'package:routine_app/core/utils/contextEx.dart';
 import 'package:routine_app/core/utils/int_ex.dart';
 import 'package:routine_app/feature/home/widget/time_widget.dart';
@@ -15,10 +16,7 @@ import '../../taskDetail/task_detail_page_state.dart';
 import '../home_page_state.dart';
 
 class PageWidgetDay extends ConsumerStatefulWidget {
-  const PageWidgetDay({
-    required this.index,
-    super.key,
-  });
+  const PageWidgetDay({required this.index, super.key});
 
   final int index;
 
@@ -41,12 +39,14 @@ class _PageWidgetState extends ConsumerState<PageWidgetDay> {
   }
 
   int compExp(Todo a, Todo b) {
-    DateTime? aComp = isContainDay(a.completeDate, pageDay)
-        ? a.preExpectedDate
-        : a.expectedDate;
-    DateTime? bComp = isContainDay(b.completeDate, pageDay)
-        ? b.preExpectedDate
-        : b.expectedDate;
+    DateTime? aComp =
+        isContainDay(a.completeDate, pageDay)
+            ? a.preExpectedDate
+            : a.expectedDate;
+    DateTime? bComp =
+        isContainDay(b.completeDate, pageDay)
+            ? b.preExpectedDate
+            : b.expectedDate;
     return aComp!.compareTo(bComp!);
   }
 
@@ -69,10 +69,7 @@ class _PageWidgetState extends ConsumerState<PageWidgetDay> {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -154,7 +151,9 @@ class _PageWidgetState extends ConsumerState<PageWidgetDay> {
             ),
             InkWell(
               onTap: () {
-                ref.read(todoProvider.notifier).onTapDailyCheckBox(
+                ref
+                    .read(todoProvider.notifier)
+                    .onTapDailyCheckBox(
                       context: context,
                       today: state.today,
                       pageIndex: widget.index,
@@ -164,18 +163,29 @@ class _PageWidgetState extends ConsumerState<PageWidgetDay> {
               borderRadius: BorderRadius.circular(100),
               child: Container(
                 padding: const EdgeInsets.all(12),
-                child: SvgPicture.asset(
-                  (isCompleted) ? AppAssets.check : AppAssets.uncheck,
+                child: Container(
                   width: 24,
-                ),
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: AppColor.backgroundColor,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: SvgPicture.asset(
+                    (todo.taskType == TaskType.single)
+                        ? AppAssets.check
+                        : AppAssets.recycle,
+                    colorFilter: ColorFilter.mode(
+                      AppColor.primary.withAlpha(isCompleted ? 255 : 60),
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                )
               ),
             ),
             Expanded(
               child: Text(
                 todo.name,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
+                style: const TextStyle(fontSize: 14),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),

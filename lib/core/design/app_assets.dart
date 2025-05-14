@@ -5,4 +5,5 @@ class AppAssets {
   static const plus = 'assets/icons/plus.svg';
   static const sort = 'assets/icons/sort.svg';
   static const filter = 'assets/icons/filter.svg';
+  static const recycle = 'assets/icons/recycle_24.svg';
 }

@@ -4,7 +4,7 @@ import 'package:routine_app/core/utils/contextEx.dart';
 extension IntEx on int? {
   String toSpanString(BuildContext context) {
     if (this == null) {
-      throw Exception('Span should not null');
+      return '';
     }
     if (this! < 7) {
       return context.l10n.onceEveryDay(this as num);

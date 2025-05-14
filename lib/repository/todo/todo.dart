@@ -1,3 +1,4 @@
+import 'package:routine_app/core/enums/TaskType.dart';
 import 'package:routine_app/core/utils/date.dart';
 
 class Todo {
@@ -265,5 +266,13 @@ class Todo {
     }
 
     return false;
+  }
+
+  TaskType get taskType {
+    if (span == null) {
+      return TaskType.single;
+    } else {
+      return TaskType.recurring;
+    }
   }
 }

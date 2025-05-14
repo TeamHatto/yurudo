@@ -8,6 +8,7 @@ import 'package:routine_app/core/utils/date.dart';
 import 'package:routine_app/core/utils/int_ex.dart';
 import 'package:routine_app/feature/home/widget/time_widget.dart';
 
+import '../../../core/enums/TaskType.dart';
 import '../../../core/navigation/router.dart';
 import '../../../repository/category/category_provider.dart';
 import '../../../repository/todo/todo.dart';
@@ -15,21 +16,8 @@ import '../../../repository/todo/todo_provider.dart';
 import '../../taskDetail/task_detail_page_state.dart';
 import '../home_page_state.dart';
 
-bool isSameDay(DateTime? a, DateTime? b) {
-  if (a == null || b == null) return false;
-  return a.year == b.year && a.month == b.month && a.day == b.day;
-}
-
-bool isBeforeDay(DateTime? a, DateTime? b) {
-  if (a == null || b == null) return false;
-  return !isSameDay(a, b) && a.isBefore(b);
-}
-
 class PageWidgetWeek extends ConsumerStatefulWidget {
-  const PageWidgetWeek({
-    required this.index,
-    super.key,
-  });
+  const PageWidgetWeek({required this.index, super.key});
 
   final int index;
 
@@ -43,8 +31,9 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
   @override
   void didChangeDependencies() {
     final state = ref.watch(homePageStateProvider);
-    pageWeekStart =
-        state.today.add(Duration(days: widget.index * state.displayTerm.term));
+    pageWeekStart = state.today.add(
+      Duration(days: widget.index * state.displayTerm.term),
+    );
     super.didChangeDependencies();
   }
 
@@ -52,10 +41,6 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
     int result = a.expectedDate!.compareTo(b.expectedDate!);
     if (result != 0) return result;
     return a.id.compareToEx(b.id);
-  }
-
-  int compTime(Todo a, Todo b) {
-    return a.time.compareToEx(b.time);
   }
 
   @override
@@ -70,15 +55,21 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
       }
       final pageWeekEnd = pageWeekStart.add(const Duration(days: 6));
       // 未完了のゆるDO
-      if (widget.index < 0 ||
-          todo.expectedDate == null ||
-          todo.expectedDate!.isAfterDay(pageWeekEnd)) continue;
+      if (widget.index < 0 || todo.expectedDate.isAfterDay(pageWeekEnd)) {
+        continue;
+      }
 
       for (var i = 0; i < 7; i++) {
         DateTime dayInWeek = pageWeekStart.add(Duration(days: i));
-        if (!dayInWeek.isBeforeDay(todo.expectedDate!) &&
-            todo.expectedDate!.dateDiff(dayInWeek) % todo.span! == 0) {
-          todoList.add(todo.copyWith(expectedDate: () => dayInWeek));
+        if (todo.expectedDate != null &&
+            !dayInWeek.isBeforeDay(todo.expectedDate!)) {
+          if (todo.taskType == TaskType.single &&
+              todo.expectedDate.isSameDay(dayInWeek)) {
+            todoList.add(todo.copyWith(expectedDate: () => dayInWeek));
+          } else if (todo.taskType == TaskType.recurring &&
+              todo.expectedDate!.dateDiff(dayInWeek) % todo.span! == 0) {
+            todoList.add(todo.copyWith(expectedDate: () => dayInWeek));
+          }
         }
       }
     }
@@ -86,10 +77,7 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -105,10 +93,8 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
                 var todo = todoList[index];
                 return Column(
                   children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    _taskItem(todo, context)
+                    const SizedBox(height: 12),
+                    _taskItem(todo, context),
                   ],
                 );
               },
@@ -122,7 +108,8 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
 
   Widget _taskItem(Todo todo, BuildContext context) {
     final state = ref.watch(homePageStateProvider);
-    final isCompleted = todo.expectedDate == null ||
+    final isCompleted =
+        todo.expectedDate == null ||
         isContainDay(todo.completeDate, todo.expectedDate!);
 
     return Ink(
@@ -163,7 +150,9 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
             ),
             InkWell(
               onTap: () {
-                ref.read(todoProvider.notifier).onTapWeeklyCheckBox(
+                ref
+                    .read(todoProvider.notifier)
+                    .onTapWeeklyCheckBox(
                       context: context,
                       today: state.today,
                       pageIndex: widget.index,
@@ -171,44 +160,53 @@ class _PageWidgetState extends ConsumerState<PageWidgetWeek> {
                     );
               },
               borderRadius: BorderRadius.circular(100),
-              child: Padding(
+              child: Container(
                 padding: const EdgeInsets.all(12),
-                child: SvgPicture.asset(
-                  (todo.expectedDate == null ||
-                          isContainDay(todo.completeDate, todo.expectedDate!))
-                      ? AppAssets.check
-                      : AppAssets.uncheck,
+                child: Container(
                   width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: AppColor.backgroundColor,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: SvgPicture.asset(
+                    (todo.taskType == TaskType.single)
+                        ? AppAssets.check
+                        : AppAssets.recycle,
+                    colorFilter: ColorFilter.mode(
+                      AppColor.primary.withAlpha(isCompleted ? 255 : 60),
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
               ),
             ),
             Expanded(
               child: Text(
                 todo.name,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
+                style: const TextStyle(fontSize: 14),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             Container(
-                width: 70,
-                height: double.infinity,
-                margin: const EdgeInsets.only(left: 12),
-                decoration: BoxDecoration(
-                  color: AppColor.thirdColor.withOpacity(0.6),
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(8),
-                    bottomRight: Radius.circular(8),
-                  ),
+              width: 70,
+              height: double.infinity,
+              margin: const EdgeInsets.only(left: 12),
+              decoration: BoxDecoration(
+                color: AppColor.thirdColor.withOpacity(0.6),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(8),
+                  bottomRight: Radius.circular(8),
                 ),
-                child: TimeWidget(
-                  todo: todo,
-                  today: state.today,
-                  pageDate: pageWeekStart,
-                  term: TermType.week,
-                )),
+              ),
+              child: TimeWidget(
+                todo: todo,
+                today: state.today,
+                pageDate: pageWeekStart,
+                term: TermType.week,
+              ),
+            ),
           ],
         ),
       ),
