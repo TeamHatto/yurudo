@@ -246,23 +246,21 @@ class Todo {
   bool isExpectedDay(DateTime date) {
     final today = DateTime.now();
 
-    // 実施予定日が設定されているか
+    // 実施予定日が設定されていないなら除外
     if (expectedDate == null) return false;
 
-    // 実施予定日が今日以降か
-    if (expectedDate.isAfterDay(today) ||
-        expectedDate.isSameDay(today)) {
+    // 実施予定日が今日より前なら除外
+    if (expectedDate.isBeforeDay(today)) {
       return false;
     }
 
-    // expectedDayならtrue
+    // 対象日が実施予定日と同じなら対象
     if (expectedDate.isSameDay(date)) return true;
 
-    // スパン日後ならtrue
-    if (span != null) {
-      return (expectedDate.isSameDay(date) ||
-              expectedDate.isBeforeDay(date) &&
-                  expectedDate!.dateDiff(date) % span! == 0); // 当日か、スパン日後
+    // 実施予定日が対象日がより前で、スパンに合致するなら対象
+    if (span != null && expectedDate.isBeforeDay(date)) {
+      final diff = expectedDate!.dateDiff(date);
+      return diff % span! == 0;
     }
 
     return false;
