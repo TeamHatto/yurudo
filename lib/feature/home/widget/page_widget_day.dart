@@ -119,12 +119,9 @@ class _PageWidgetState extends ConsumerState<PageWidgetDay> {
     final state = ref.watch(homePageStateProvider);
     final isCompleted = isContainDay(todo.completeDate, pageDay);
 
-    return Ink(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: AppColor.secondaryColor,
-      ),
-      height: 60,
+    return Material(
+      borderRadius: BorderRadius.circular(8),
+      color: AppColor.secondaryColor,
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
         highlightColor: AppColor.secondaryColor.withOpacity(0.5),
@@ -135,82 +132,85 @@ class _PageWidgetState extends ConsumerState<PageWidgetDay> {
             arguments: TaskDetailPageArgs(todo: todo, isCompleted: isCompleted),
           );
         },
-        child: Row(
-          children: [
-            Container(
-              width: 12,
-              decoration: BoxDecoration(
-                color: ref
-                    .watch(categoryProvider.notifier)
-                    .getColor(todo.categoryId),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            children: [
+              Container(
+                width: 12,
+                decoration: BoxDecoration(
+                  color: ref
+                      .watch(categoryProvider.notifier)
+                      .getColor(todo.categoryId),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                  ),
                 ),
               ),
-            ),
-            InkWell(
-              onTap: () {
-                ref
-                    .read(todoProvider.notifier)
-                    .onTapDailyCheckBox(
-                      context: context,
-                      today: state.today,
-                      pageIndex: widget.index,
-                      todo: todo,
-                    );
-              },
-              borderRadius: BorderRadius.circular(100),
-              child: Container(
-                padding: const EdgeInsets.all(12),
+              InkWell(
+                onTap: () {
+                  ref
+                      .read(todoProvider.notifier)
+                      .onTapDailyCheckBox(
+                        context: context,
+                        today: state.today,
+                        pageIndex: widget.index,
+                        todo: todo,
+                      );
+                },
+                borderRadius: BorderRadius.circular(100),
                 child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: AppColor.backgroundColor,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: SvgPicture.asset(
-                    (todo.taskType == TaskType.single)
-                        ? AppAssets.check
-                        : AppAssets.recycle,
-                    colorFilter: ColorFilter.mode(
-                      AppColor.primary.withAlpha(isCompleted ? 255 : 60),
-                      BlendMode.srcIn,
+                  padding: const EdgeInsets.all(12),
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      color: AppColor.backgroundColor,
+                      borderRadius: BorderRadius.circular(4),
                     ),
+                    child: SvgPicture.asset(
+                      (todo.taskType == TaskType.single)
+                          ? AppAssets.check
+                          : AppAssets.recycle,
+                      colorFilter: ColorFilter.mode(
+                        AppColor.primary.withAlpha(isCompleted ? 255 : 60),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  )
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  todo.name,
+                  style: const TextStyle(fontSize: 14),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Container(
+                width: 70,
+                height: double.infinity,
+                margin: const EdgeInsets.only(left: 12),
+                decoration: BoxDecoration(
+                  color: AppColor.thirdColor.withOpacity(0.6),
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(8),
+                    bottomRight: Radius.circular(8),
                   ),
-                )
-              ),
-            ),
-            Expanded(
-              child: Text(
-                todo.name,
-                style: const TextStyle(fontSize: 14),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Container(
-              width: 70,
-              height: double.infinity,
-              margin: const EdgeInsets.only(left: 12),
-              decoration: BoxDecoration(
-                color: AppColor.thirdColor.withOpacity(0.6),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
+                ),
+                child: Center(
+                  child: TimeWidget(
+                    todo: todo,
+                    today: state.today,
+                    pageDate: pageDay,
+                    term: TermType.day,
+                  ),
                 ),
               ),
-              child: Center(
-                child: TimeWidget(
-                  todo: todo,
-                  today: state.today,
-                  pageDate: pageDay,
-                  term: TermType.day,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
