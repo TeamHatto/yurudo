@@ -31,6 +31,7 @@ class SignInNotifier extends StateNotifier<SignInState> {
   Future<void> onTapSignOut() async {
     state = state.copyWith(isLoading: true);
     try {
+      GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
     } catch (e) {
       logger.e(e);
