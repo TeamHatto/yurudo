@@ -247,6 +247,17 @@
   "titleExample15": "Review whether you really need your subscriptions (every 4 months)",
   "titleExample16": "Replace the closet moth repellent (every 6 months)",
 
+  "singleTitleExample1": "Buy a monitor stand",
+  "singleTitleExample2": "Go check out new shampoo",
+  "singleTitleExample3": "[Deadline: 3/9] Buy a birthday present for...",
+  "singleTitleExample4": "Plan summer vacation activities",
+  "singleTitleExample5": "Choose a restaurant for dinner with friends",
+  "singleTitleExample6": "Go shopping for summer clothes",
+  "singleTitleExample7": "Buy a new water filter",
+  "singleTitleExample8": "Visit the viral acai bowl cafe",
+  "singleTitleExample9": "Read one book from my unread stack",
+  "singleTitleExample10": "Browse around a bazaar",
+
   "letsRegisterYurudo": "Register the Yuru-DO you thought of today",
   "doPastYurudoCount": "There are {count} overdue Yuru-DOs",
   "@doPastYurudoCount": {

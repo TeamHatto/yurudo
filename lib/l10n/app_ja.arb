@@ -204,6 +204,17 @@
   "titleExample15": "サブスクを本当に必要かどうか見直す(4か月に1回)",
   "titleExample16": "クローゼットの防虫剤を交換する(6か月に1回)",
 
+  "singleTitleExample1": "モニター台購入",
+  "singleTitleExample2": "新しいシャンプーを見に行く",
+  "singleTitleExample3": "【〆切：3/9】〇〇さんの誕生日プレゼントを買う",
+  "singleTitleExample4": "夏休みの遊びの予定を立てる",
+  "singleTitleExample5": "友達とのご飯会のお店選び",
+  "singleTitleExample6": "夏服を見に行く",
+  "singleTitleExample7": "新しいエアリズムを買う",
+  "singleTitleExample8": "バズってたアサイーボウルのお店に行く",
+  "singleTitleExample9": "積読から1冊読む",
+  "singleTitleExample10": "雑貨屋さんにぶらつきに行く",
+
   "letsRegisterYurudo": "今日思いついたゆるDOを登録しよう",
   "doPastYurudoCount": "実施が遅れているゆるDOが{count}個あります",
   "@doPastYurudoCount": {

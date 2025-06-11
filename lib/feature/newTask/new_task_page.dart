@@ -32,8 +32,8 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
   final provider = newTaskPageStateProvider;
   late final AdService ad;
   bool _isInitialized = false;
-  late final List<String> titleList;
-  late final int titleNum;
+  late final Map<TaskType, List<String>> titleList;
+  int titleNum = 0;
 
   @override
   void initState() {
@@ -64,25 +64,40 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
     final NewTaskPageState state = ref.watch(provider);
 
     if (!_isInitialized) {
-      titleList = [
-        context.l10n.titleExample1,
-        context.l10n.titleExample2,
-        context.l10n.titleExample3,
-        context.l10n.titleExample4,
-        context.l10n.titleExample5,
-        context.l10n.titleExample6,
-        context.l10n.titleExample7,
-        context.l10n.titleExample8,
-        context.l10n.titleExample9,
-        context.l10n.titleExample10,
-        context.l10n.titleExample11,
-        context.l10n.titleExample12,
-        context.l10n.titleExample13,
-        context.l10n.titleExample14,
-        context.l10n.titleExample15,
-        context.l10n.titleExample16,
-      ];
-      titleNum = Random().nextInt(titleList.length);
+      titleList = {
+        TaskType.recurring: [
+          context.l10n.titleExample1,
+          context.l10n.titleExample2,
+          context.l10n.titleExample3,
+          context.l10n.titleExample4,
+          context.l10n.titleExample5,
+          context.l10n.titleExample6,
+          context.l10n.titleExample7,
+          context.l10n.titleExample8,
+          context.l10n.titleExample9,
+          context.l10n.titleExample10,
+          context.l10n.titleExample11,
+          context.l10n.titleExample12,
+          context.l10n.titleExample13,
+          context.l10n.titleExample14,
+          context.l10n.titleExample15,
+          context.l10n.titleExample16,
+        ],
+        TaskType.single: [
+          context.l10n.singleTitleExample1,
+          context.l10n.singleTitleExample2,
+          context.l10n.singleTitleExample3,
+          context.l10n.singleTitleExample4,
+          context.l10n.singleTitleExample5,
+          context.l10n.singleTitleExample6,
+          context.l10n.singleTitleExample7,
+          context.l10n.singleTitleExample8,
+          context.l10n.singleTitleExample9,
+          context.l10n.singleTitleExample10,
+        ],
+      };
+
+      titleNum = Random().nextInt(titleList[state.taskType]?.length ?? 1);
       _isInitialized = true;
     }
 
@@ -122,13 +137,19 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
                 SegmentedButton<TaskType>(
                   onSelectionChanged: (type) {
                     ref.read(provider.notifier).onChangeTaskType(type.first);
+                    titleNum = Random().nextInt(
+                      titleList[type.first]?.length ?? 1,
+                    );
                   },
                   segments: [
                     ButtonSegment(
                       value: TaskType.recurring,
                       label: Text(context.l10n.routineTask),
                     ),
-                    ButtonSegment(value: TaskType.single, label: Text(context.l10n.singleTask)),
+                    ButtonSegment(
+                      value: TaskType.single,
+                      label: Text(context.l10n.singleTask),
+                    ),
                   ],
                   selected: {ref.watch(provider).taskType},
                   expandedInsets: const EdgeInsets.symmetric(vertical: 10),
@@ -145,7 +166,8 @@ class _NewTaskPageState extends ConsumerState<NewTaskPage> {
                   ),
                 AppTextField(
                   label: context.l10n.labelTitle,
-                  placeholder: "${context.l10n.example}）${titleList[titleNum]}",
+                  placeholder:
+                      "${context.l10n.example}）${titleList[state.taskType]?[titleNum]}",
                   isRequired: true,
                   onChanged: (value) {
                     ref.read(provider.notifier).setName(value);
