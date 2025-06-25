@@ -10,6 +10,11 @@ import 'package:routine_app/core/services/get_env.dart';
 final adServiceProvider = Provider((ref) => AdService());
 
 class AdService {
+  AdService._internal();
+  static final AdService _instance = AdService._internal();
+
+  factory AdService() => _instance;
+
   InterstitialAd? _interstitialAd;
 
   Future<void> showInterstitial() async {
@@ -17,41 +22,44 @@ class AdService {
     _interstitialAd?.show();
   }
 
-  Future<String> get adUnitId => Platform.isAndroid
-      ? GetEnv().admobAndroidUnitId
-      : GetEnv().admobIosUnitId;
+  Future<String> get adUnitId =>
+      Platform.isAndroid
+          ? GetEnv().admobAndroidUnitId
+          : GetEnv().admobIosUnitId;
 
-  void adLoad({
-    required VoidCallback onFinish,
-  }) {
-    adUnitId.then((value) =>
-        InterstitialAd.load(
-          adUnitId: value,
-          request: const AdRequest(),
-          adLoadCallback: InterstitialAdLoadCallback(
-            onAdLoaded: (InterstitialAd ad) {
-              ad.fullScreenContentCallback = FullScreenContentCallback(
-                onAdShowedFullScreenContent: (InterstitialAd ad) =>
-                    debugPrint('$ad onAdShowedFullScreenContent.'),
-                onAdDismissedFullScreenContent: (InterstitialAd ad) {
-                  debugPrint('$ad onAdDismissedFullScreenContent.');
-                  ad.dispose();
-                  onFinish();
-                },
-                onAdFailedToShowFullScreenContent:
-                    (InterstitialAd ad, AdError error) {
-                  debugPrint('$ad onAdFailedToShowFullScreenContent: $error');
-                  ad.dispose();
-                },
-                onAdImpression: (InterstitialAd ad) =>
-                    debugPrint('$ad impression occurred.'),
-              );
-              _interstitialAd = ad;
-            },
-            onAdFailedToLoad: (LoadAdError error) {
-              Logger().e("InterstitialAd failed to load: $error");
-            },
-          ),
-        ));
+  void adLoad({required VoidCallback onFinish}) {
+    adUnitId.then(
+      (value) => InterstitialAd.load(
+        adUnitId: value,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (InterstitialAd ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              onAdShowedFullScreenContent:
+                  (InterstitialAd ad) =>
+                      Logger().d('$ad onAdShowedFullScreenContent.'),
+              onAdDismissedFullScreenContent: (InterstitialAd ad) {
+                Logger().d('$ad onAdDismissedFullScreenContent.');
+                ad.dispose();
+                onFinish();
+              },
+              onAdFailedToShowFullScreenContent: (
+                InterstitialAd ad,
+                AdError error,
+              ) {
+                Logger().d('$ad onAdFailedToShowFullScreenContent: $error');
+                ad.dispose();
+              },
+              onAdImpression:
+                  (InterstitialAd ad) => Logger().d('$ad impression occurred.'),
+            );
+            _interstitialAd = ad;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            Logger().e("InterstitialAd failed to load: $error");
+          },
+        ),
+      ),
+    );
   }
 }
