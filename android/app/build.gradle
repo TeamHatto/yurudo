@@ -14,7 +14,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "io.github.murasya.routine.routine_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     flavorDimensions += "default"
@@ -45,7 +45,7 @@ android {
         multiDexEnabled true
         applicationId = "io.github.murasya.routine.routine_app"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
