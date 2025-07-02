@@ -41,10 +41,10 @@ class _ListPageState extends ConsumerState<ListPage> {
     final state = ref.watch(listPageStateProvider);
     switch (state.sortType) {
       case SortType.addDayAsc:
-        todos.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
+        todos.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
         break;
       case SortType.addDayDesc:
-        todos.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        todos.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
         break;
       case SortType.spanAsc:
         todos.sort((a, b) {
