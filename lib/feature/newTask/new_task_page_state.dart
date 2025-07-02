@@ -90,7 +90,7 @@ class NewTaskPageStateNotifier extends StateNotifier<NewTaskPageState> {
 
     ref.read(todoProvider.notifier).create(
       name: state.name,
-      span: state.span,
+      span: (state.taskType == TaskType.recurring) ? state.span : null,
       firstDay: state.firstDay!,
       categoryId: state.category?.id,
       time: state.time,
